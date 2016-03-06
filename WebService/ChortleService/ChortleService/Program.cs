@@ -19,6 +19,17 @@ using Newtonsoft.Json.Linq;
 
 namespace ChortleService
 {
+
+    //GLOBAL VALUES
+    public static class Values
+    {
+        //Used to make output more or less verbose and other things
+        public static bool debugmode = true;
+        public static string port = "8080";
+        public static string webserviceurl = "http://localhost:" + port + "/chortleservice";
+    }
+    
+
     [DataContract]
     public class User
     {
@@ -44,7 +55,7 @@ namespace ChortleService
         [OperationContract]
         void addUser(Stream body)
         {
-            Console.Write("Recieved");
+            Console.Write("Recieved a packet\n");
             StreamReader reader = new StreamReader(body);
             string res = reader.ReadToEnd();
             reader.Close();
@@ -65,7 +76,7 @@ namespace ChortleService
     {
         static void Main(string[] args)
         {
-            WebServiceHost host = new WebServiceHost(typeof(ChortleService), new Uri("http://localhost:8080/chortleservice"));
+            WebServiceHost host = new WebServiceHost(typeof(ChortleService), new Uri(Values.webserviceurl));
             host.Open();
             while (true) ;
         }

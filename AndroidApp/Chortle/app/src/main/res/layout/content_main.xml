@@ -12,18 +12,55 @@
     tools:context="com.chortle.chortle.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView2" />
+        android:text="Choose IP"
+        android:id="@+id/ipLabel" />
+
+    <RadioGroup
+        android:id="@+id/ipSelector"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/ipLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:singleLine="true">
+        <RadioButton android:id="@+id/radio_mitchell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mitchell"
+            android:onClick="onRadioButtonClicked"/>
+        <RadioButton android:id="@+id/radio_conor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conor"
+        android:onClick="onRadioButtonClicked"/>
+        <RadioButton android:id="@+id/radio_gianni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gianni"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Make Request"
-        android:id="@+id/button"
-        android:layout_below="@+id/textView2"
+        android:text="Add User"
+        android:id="@+id/addUser"
+        android:layout_below="@+id/ipSelector"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Output"
+        android:id="@+id/output"
+        android:layout_below="@+id/addUser"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:singleLine="true" />

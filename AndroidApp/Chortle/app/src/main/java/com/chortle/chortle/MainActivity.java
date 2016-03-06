@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,9 +17,9 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     // Instantiate the RequestQueue.
     RequestQueue queue;
-    final String url = "http://192.168.1.66:8080/chortleservice/users";
+    String url;
 
-    final User user = new User("a","b","c","d","e");
+    User user = new User("a","b","c","d","e");
 
     JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST,
         url, user.toJson(),
@@ -26,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONObject response) {
-                TextView mTextView = (TextView) findViewById(R.id.textView2);
+                TextView mTextView = (TextView) findViewById(R.id.output);
                 mTextView.setText( mTextView.getText() + "Got a response");
             }
         }, new Response.ErrorListener() {
 
         @Override
         public void onErrorResponse(VolleyError error) {
-            TextView mTextView = (TextView) findViewById(R.id.textView2);
+            TextView mTextView = (TextView) findViewById(R.id.output);
             mTextView.setText(mTextView.getText() + "That didn't work!" + error.toString());
         }
     }
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.button:
+                case R.id.addUser:
                     // Add the request to the RequestQueue.*/
                     queue.add(request);
                 default:
@@ -51,6 +52,27 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radio_mitchell:
+                if (checked)
+                    url = "http://" + UrlValues.MitchellIP + ":" + UrlValues.Port + "/chortleservice/users";
+                    break;
+            case R.id.radio_conor:
+                if (checked)
+                    url = "http://" + UrlValues.ConorIP + ":" + UrlValues.Port + "/chortleservice/users";
+                    break;
+            case R.id.radio_gianni:
+                if (checked)
+                    url = "http://" + UrlValues.GianniIP + ":" + UrlValues.Port + "/chortleservice/users";
+                    break;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +80,14 @@ public class MainActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Button button1 = (Button)findViewById(R.id.button);
-        button1.setOnClickListener(listener);
+        Button addUser = (Button)findViewById(R.id.addUser);
+        addUser.setOnClickListener(listener);
+        url = "http://" + "192.168.20.5" + ":" + UrlValues.Port + "/chortleservice/users";
+        RadioButton mitchellIP = (RadioButton)findViewById(R.id.radio_mitchell);
+        mitchellIP.setChecked(true);
+        RadioButton conorIP = (RadioButton)findViewById(R.id.radio_conor);
+        mitchellIP.setChecked(true);
+        RadioButton gianniIP = (RadioButton)findViewById(R.id.radio_gianni);
+        mitchellIP.setChecked(true);
     }
 }

@@ -16,7 +16,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     // Instantiate the RequestQueue.
     RequestQueue queue;
-    final String url = "http://192.168.20.5:8080/chortleservice/users";
+    final String url = "http://192.168.1.66:8080/chortleservice/users";
 
     final User user = new User("a","b","c","d","e");
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onErrorResponse(VolleyError error) {
             TextView mTextView = (TextView) findViewById(R.id.textView2);
-            mTextView.setText(mTextView.getText() + "That didn't work!");
+            mTextView.setText(mTextView.getText() + "That didn't work!" + error.toString());
         }
     }
     );

@@ -44,7 +44,7 @@ namespace ChortleService
         [OperationContract]
         void addUser(Stream body)
         {
-            Debug.Print("Recieved");
+            Console.Write("Recieved");
             StreamReader reader = new StreamReader(body);
             string res = reader.ReadToEnd();
             reader.Close();
@@ -57,7 +57,7 @@ namespace ChortleService
         [OperationContract]
         void getUsers()
         {
-            Debug.Print("Getting");
+            Console.Write("Getting");
         }
     }
 

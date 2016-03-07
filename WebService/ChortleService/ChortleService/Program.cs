@@ -40,6 +40,15 @@ namespace ChortleService
         void addUser(String username, String firstname, String lastname, String email, String hash)
         {
             Console.WriteLine(DateTime.Now + " packet receieved");
+
+            try
+            {
+                userTable.Insert(username,firstname,lastname,email,hash);
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
 
         [WebGet(UriTemplate = "users")]

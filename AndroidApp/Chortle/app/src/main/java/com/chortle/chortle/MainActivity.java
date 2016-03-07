@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue queue;
     String url, ip;
     int count = 1;
-    User user = new User("a","b","c","d","e");
+    User user = new User("hjafgs","fadfa","fasdhf","dafdsf","asfas");
 
     private View.OnClickListener buttonListener = new View.OnClickListener() {
         public void onClick(View v) {

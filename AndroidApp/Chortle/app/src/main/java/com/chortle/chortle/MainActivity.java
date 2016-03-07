@@ -9,12 +9,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     }catch(JSONException e){
                         json = null;
                     }
-                    JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST,
+                    final JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST,
                             url,json,
                         new Response.Listener<JSONObject>() {
 
@@ -58,9 +64,25 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 TextView mTextView = (TextView) findViewById(R.id.output);
-
                                 print("Failure (" + error.networkResponse.statusCode + ")");
-                                count++;
+
+                               /* //TESTING
+
+                                NetworkResponse response = error.networkResponse;
+                                Map<String, String> responseHeaders = response.headers;
+                                Response<String> result = Response.success(responseHeaders.get("Content-Length"), HttpHeaderParser.parseCacheHeaders(response));
+
+                                //Test 2
+                                try {
+                                    String responseBody = new String( error.networkResponse.data, "utf-8" );
+                                    JSONObject jsonObject = new JSONObject( responseBody );
+                                    print(jsonObject.toString());
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }*/
+
                             }
                         }
                     );
@@ -76,12 +98,16 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.radio_gianni:
                     ip = getString(R.string.gianni_ip);
                     break;
+                case R.id.radio_online_host:
+                    ip = getString(R.string.online_host);
+                    break;
                 default:
                     break;
             }
             if(v.getId() == R.id.radio_mitchell
                     || v.getId() == R.id.radio_conor
-                    || v.getId() == R.id.radio_gianni){
+                    || v.getId() == R.id.radio_gianni
+                    || v.getId() == R.id.radio_online_host){
                 url = "http://" + ip + ":" + getString(R.string.port) + "/chortleservice/users";
                 print("IP set to " + ip);
             }

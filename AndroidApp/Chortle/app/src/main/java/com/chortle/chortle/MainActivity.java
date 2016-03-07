@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 TextView mTextView = (TextView) findViewById(R.id.output);
-                                print("Failure (" + error.toString() + ")");
+
+                                print("Failure (" + error.networkResponse.statusCode + ")");
                                 count++;
                             }
                         }

@@ -55,8 +55,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Output\n------------"
-        android:id="@+id/outputLabel"
+        android:text="\nLog\n------------"
+        android:id="@+id/logLabel"
         android:layout_below="@+id/addUser"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:text=""
         android:id="@+id/output"
-        android:layout_below="@+id/outputLabel"
+        android:layout_below="@+id/logLabel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:scrollbars = "vertical"

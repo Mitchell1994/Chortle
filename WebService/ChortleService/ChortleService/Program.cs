@@ -28,42 +28,18 @@ namespace ChortleService
         public static string port = "9910";
         public static string webserviceurl = "http://localhost:" + port + "/chortleservice";
     }
-    
-
-    [DataContract]
-    public class User
-    {
-        [DataMember]
-        public string username { get; set; }
-        [DataMember]
-        public string firstname { get; set; }
-        [DataMember]
-        public string lastname { get; set; }
-        [DataMember]
-        public string email { get; set; }
-        [DataMember]
-        public string hash { get; set; }
-    }
-
 
     [ServiceContract]
     public partial class ChortleService
     {
         //UserTableAdapter uta = new UserTableAdapter();
-
         
         [WebInvoke(Method = "POST", UriTemplate = "users", BodyStyle = WebMessageBodyStyle.Wrapped, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
-        void addUser(Stream body)
+        void addUser(String username, String firstname, String lastname, String email, String hash)
         {
             Console.WriteLine(DateTime.Now + " Packet receieved");
-            StreamReader reader = new StreamReader(body);
-            string res = reader.ReadToEnd();
-            reader.Close();
-            reader.Dispose();
-            JObject user = JObject.Parse(res);
-            Console.WriteLine(user.ToString());
-            //uta.Insert((String)user["username"], (String)user["firstname"], (String)user["lastname"], (String)user["email"], (String)user["hash"]);
+            Console.Write(username + "," + firstname + "," + lastname + "," + email + "," + hash);
         }
 
         [WebGet(UriTemplate = "users")]

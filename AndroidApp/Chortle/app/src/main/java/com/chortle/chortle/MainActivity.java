@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     // Instantiate the RequestQueue.
     RequestQueue queue;
-    String url;
+    String url = "http://" + UrlValues.MitchellIP + ":" + UrlValues.Port + "/chortleservice/users";
 
     User user = new User("a","b","c","d","e");
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
     );
 
-    private View.OnClickListener listener = new View.OnClickListener() {
+    private View.OnClickListener addUserListener = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.addUser:
@@ -52,26 +52,25 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radio_mitchell:
-                if (checked)
-                    url = "http://" + UrlValues.MitchellIP + ":" + UrlValues.Port + "/chortleservice/users";
+    private View.OnClickListener ipSelectorListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            boolean checked = ((RadioButton) v).isChecked();
+            switch(v.getId()) {
+                case R.id.radio_mitchell:
+                    if (checked)
+                        url = "http://" + UrlValues.MitchellIP + ":" + UrlValues.Port + "/chortleservice/users";
                     break;
-            case R.id.radio_conor:
-                if (checked)
-                    url = "http://" + UrlValues.ConorIP + ":" + UrlValues.Port + "/chortleservice/users";
+                case R.id.radio_conor:
+                    if (checked)
+                        url = "http://" + UrlValues.ConorIP + ":" + UrlValues.Port + "/chortleservice/users";
                     break;
-            case R.id.radio_gianni:
-                if (checked)
-                    url = "http://" + UrlValues.GianniIP + ":" + UrlValues.Port + "/chortleservice/users";
+                case R.id.radio_gianni:
+                    if (checked)
+                        url = "http://" + UrlValues.GianniIP + ":" + UrlValues.Port + "/chortleservice/users";
                     break;
+            }
         }
-    }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,13 +80,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Button addUser = (Button)findViewById(R.id.addUser);
-        addUser.setOnClickListener(listener);
-        url = "http://" + "192.168.20.5" + ":" + UrlValues.Port + "/chortleservice/users";
+        addUser.setOnClickListener(addUserListener);
         RadioButton mitchellIP = (RadioButton)findViewById(R.id.radio_mitchell);
         mitchellIP.setChecked(true);
+        mitchellIP.setOnClickListener(ipSelectorListener);
         RadioButton conorIP = (RadioButton)findViewById(R.id.radio_conor);
-        mitchellIP.setChecked(true);
+        conorIP.setOnClickListener(ipSelectorListener);
         RadioButton gianniIP = (RadioButton)findViewById(R.id.radio_gianni);
-        mitchellIP.setChecked(true);
+        gianniIP.setOnClickListener(ipSelectorListener);
     }
 }

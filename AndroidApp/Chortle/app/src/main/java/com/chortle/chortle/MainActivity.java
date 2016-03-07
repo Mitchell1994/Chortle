@@ -143,31 +143,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 TextView mTextView = (TextView) findViewById(R.id.output);
+                String responseDesc = "";
                 try
                 {
-                    print("Failure (" + error.networkResponse.statusCode + ")");
+                    try {
+                        String responseBody = new String( error.networkResponse.data, "utf-8" );
+                        JSONObject jsonObject = new JSONObject( responseBody );
+                        responseDesc = jsonObject.getString("addUserResult");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    print("Failure (" + error.networkResponse.statusCode + ") - " + responseDesc);
                 }
                 catch (NullPointerException e)
                 {
                     print("Failure and response code is null");
                 }
 
-                               /* //TESTING
+               //TESTING
 
-                                NetworkResponse response = error.networkResponse;
-                                Map<String, String> responseHeaders = response.headers;
-                                Response<String> result = Response.success(responseHeaders.get("Content-Length"), HttpHeaderParser.parseCacheHeaders(response));
+                /*NetworkResponse response = error.networkResponse;
+                Map<String, String> responseHeaders = response.headers;
+                Response<String> result = Response.success(responseHeaders.get("Content-Length"), HttpHeaderParser.parseCacheHeaders(response));*/
 
-                                //Test 2
-                                try {
-                                    String responseBody = new String( error.networkResponse.data, "utf-8" );
-                                    JSONObject jsonObject = new JSONObject( responseBody );
-                                    print(jsonObject.toString());
-                                } catch (UnsupportedEncodingException e) {
-                                    e.printStackTrace();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }*/
+
 
             }
         }

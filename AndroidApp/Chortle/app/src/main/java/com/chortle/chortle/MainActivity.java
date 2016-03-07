@@ -132,23 +132,29 @@ public class MainActivity extends AppCompatActivity {
         final JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST,
                 url,json,
                 new Response.Listener<JSONObject>() {
-
                     @Override
                     public void onResponse(JSONObject response) {
                         TextView mTextView = (TextView) findViewById(R.id.output);
-                        print("Success");
+                        try {
+                            print("Success: " + response.getString("addUserResult"));
+                        } catch (JSONException e) {
+                            print("ERROR: NO SUCH JSON STRING");
+                        }
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
                 TextView mTextView = (TextView) findViewById(R.id.output);
-                try
-                {
-                    print("Failure (" + error.networkResponse.statusCode + ")");
-                }
-                catch (NullPointerException e)
-                {
+                try {
+                    String responseBody = new String( error.networkResponse.data, "utf-8" );
+                    JSONObject jsonObject = new JSONObject( responseBody );
+                    print("Failure: " + jsonObject.getString("addUserResult"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (NullPointerException e) {
                     print("Failure and response code is null");
                 }
 

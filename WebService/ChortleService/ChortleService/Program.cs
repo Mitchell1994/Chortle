@@ -14,6 +14,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Collections.Specialized;
 using System.Web;
+using System.Net.Http;
 using System.Runtime.Serialization;
 using Newtonsoft.Json.Linq;
 using ChortleService.ChortleDBDataSetTableAdapters;
@@ -33,29 +34,57 @@ namespace ChortleService
     [ServiceContract]
     public partial class ChortleService
     {
+        //Stores the user table as an object
         UserTableAdapter userTable = new UserTableAdapter();
         
         [WebInvoke(Method = "POST", UriTemplate = "users", BodyStyle = WebMessageBodyStyle.Wrapped, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         void addUser(String username, String firstname, String lastname, String email, String hash)
         {
-            Console.WriteLine(DateTime.Now + " packet receieved");
+            Console.WriteLine(DateTime.Now + " Packet receieved");
 
+            //Stores the response object that will be sent back to the android client
+            OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+            String description = "User added";
+            response.StatusCode = System.Net.HttpStatusCode.OK;
+
+            //Tries to add the new user
             try
             {
                 userTable.Insert(username,firstname,lastname,email,hash);
             }
             catch (SqlException e)
             {
-                Console.WriteLine(e.ToString());
+                //Default response is a conflict
+                response.StatusCode = System.Net.HttpStatusCode.Conflict;
+
+                description = "Bad Request (" + e.Message + ")";
+
+                //Check what the conflict is
+                if (userTable.GetData().AsEnumerable().Any(row => username == row.Field<String>("username")))
+                {
+                    description = "Username in use";
+                }
+                else if (userTable.GetData().AsEnumerable().Any(row => email == row.Field<String>("email")))
+                {
+                    description = "Email address in use";
+                }
+                else
+                {
+                    response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                }
             }
+
+            //dsiplay and respond with the description
+            Console.WriteLine(description);
+            response.StatusDescription = description;
         }
 
         [WebGet(UriTemplate = "users")]
         [OperationContract]
         void getUsers()
         {
-            Console.WriteLine(DateTime.Now + "Getting...");
+            Console.Write("Getting");
         }
     }
 

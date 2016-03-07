@@ -39,14 +39,14 @@ namespace ChortleService
         [OperationContract]
         void addUser(String username, String firstname, String lastname, String email, String hash)
         {
-            Console.WriteLine(DateTime.Now + " Packet receieved");
+            Console.WriteLine(DateTime.Now + " packet receieved");
         }
 
         [WebGet(UriTemplate = "users")]
         [OperationContract]
         void getUsers()
         {
-            Console.Write("Getting");
+            Console.WriteLine(DateTime.Now + "Getting...");
         }
     }
 

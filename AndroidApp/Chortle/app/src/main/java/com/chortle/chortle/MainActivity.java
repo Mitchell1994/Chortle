@@ -13,6 +13,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue queue;
     String url, ip;
     int count = 1;
-
     User user = new User("a","b","c","d","e");
 
     private View.OnClickListener buttonListener = new View.OnClickListener() {
@@ -30,8 +32,15 @@ public class MainActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.addUser:
                     print("Contacting " + url);
+                    Gson gson = new Gson();
+                    JSONObject json;
+                    try {
+                        json = new JSONObject(gson.toJson(user));
+                    }catch(JSONException e){
+                        json = null;
+                    }
                     JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST,
-                            url, user.toJson(),
+                            url,json,
                         new Response.Listener<JSONObject>() {
 
                             @Override
@@ -41,14 +50,15 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }, new Response.ErrorListener() {
 
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            TextView mTextView = (TextView) findViewById(R.id.output);
-                            print("Failure (" + error.toString() + ")");
-                            count++;
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                TextView mTextView = (TextView) findViewById(R.id.output);
+                                print("Failure (" + error.toString() + ")");
+                                count++;
+                            }
                         }
-                    }
                     );
+                    print("Sending " + new String(request.getBody()));
                     queue.add(request);
                     break;
                 case R.id.radio_mitchell:
@@ -74,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
 private void print(String msg) {
     TextView mTextView = (TextView) findViewById(R.id.output);
-    mTextView.append("\n" + count + ". " + msg);
+    mTextView.append(count + ". " + msg + "\n");
     count++;
 }
 

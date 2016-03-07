@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     // Instantiate the RequestQueue.
     RequestQueue queue;
-    String url = "http://" + UrlValues.MitchellIP + ":" + UrlValues.Port + "/chortleservice/users";
+    String url, ip;
     int count = 1;
 
     User user = new User("a","b","c","d","e");
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener buttonListener = new View.OnClickListener() {
         public void onClick(View v) {
             TextView mTextView = (TextView) findViewById(R.id.output);
-            String ip = UrlValues.MitchellIP;
+            ip = getString(R.string.mitchell_ip);
             switch (v.getId()) {
                 case R.id.addUser:
                     print("Contacting " + url);
@@ -52,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
                     queue.add(request);
                     break;
                 case R.id.radio_mitchell:
-                    ip = UrlValues.MitchellIP;
+                    ip = getString(R.string.mitchell_ip);
                     break;
                 case R.id.radio_conor:
-                    ip = UrlValues.ConorIP;
+                    ip = getString(R.string.conor_ip);
                     break;
                 case R.id.radio_gianni:
-                    ip = UrlValues.GianniIP;
+                    ip = getString(R.string.gianni_ip);
                     break;
                 default:
                     break;
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             if(v.getId() == R.id.radio_mitchell
                     || v.getId() == R.id.radio_conor
                     || v.getId() == R.id.radio_gianni){
-                url = "http://" + ip + ":" + UrlValues.Port + "/chortleservice/users";
+                url = "http://" + ip + ":" + getString(R.string.port) + "/chortleservice/users";
                 print("IP set to " + ip);
             }
         }
@@ -80,6 +80,10 @@ private void print(String msg) {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Define default url
+        url = "http://" + getString(R.string.mitchell_ip) + ":" + getString(R.string.port) + "/chortleservice/users";
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         queue = Volley.newRequestQueue(this);
@@ -109,6 +113,8 @@ private void print(String msg) {
         TextView mTextView = (TextView) findViewById(R.id.output);
         mTextView.setMovementMethod(new ScrollingMovementMethod());
 
-        print("IP set to " + UrlValues.MitchellIP);
+        //Set up default IP
+        ip = getString(R.string.mitchell_ip);
+        print("IP set to " + ip);
     }
 }

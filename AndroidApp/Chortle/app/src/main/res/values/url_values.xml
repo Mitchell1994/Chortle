@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="conor_ip">192.168.1.66</string>
+    <string name="mitchell_ip">192.168.20.5</string>
+    <string name="gianni_ip">192.168.1.10</string>
+    <string name="port">9910</string>
+</resources>

@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -142,7 +143,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 TextView mTextView = (TextView) findViewById(R.id.output);
-                print("Failure (" + error.networkResponse.statusCode + ")");
+                try
+                {
+                    print("Failure (" + error.networkResponse.statusCode + ")");
+                }
+                catch (NullPointerException e)
+                {
+                    print("Failure and response code is null");
+                }
 
                                /* //TESTING
 

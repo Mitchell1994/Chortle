@@ -16,6 +16,7 @@ using System.Collections.Specialized;
 using System.Web;
 using System.Runtime.Serialization;
 using Newtonsoft.Json.Linq;
+using ChortleService.ChortleDBDataSetTableAdapters;
 
 namespace ChortleService
 {
@@ -32,14 +33,13 @@ namespace ChortleService
     [ServiceContract]
     public partial class ChortleService
     {
-        //UserTableAdapter uta = new UserTableAdapter();
+        UserTableAdapter userTable = new UserTableAdapter();
         
         [WebInvoke(Method = "POST", UriTemplate = "users", BodyStyle = WebMessageBodyStyle.Wrapped, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         void addUser(String username, String firstname, String lastname, String email, String hash)
         {
             Console.WriteLine(DateTime.Now + " Packet receieved");
-            Console.Write(username + "," + firstname + "," + lastname + "," + email + "," + hash);
         }
 
         [WebGet(UriTemplate = "users")]

@@ -33,9 +33,9 @@
             android:layout_height="wrap_content"
             android:text="Mitchell"/>
         <RadioButton android:id="@+id/radio_conor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Conor" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conor" />
         <RadioButton android:id="@+id/radio_gianni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,10 +55,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Output"
-        android:id="@+id/output"
+        android:text="Output\n------------"
+        android:id="@+id/outputLabel"
         android:layout_below="@+id/addUser"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/output"
+        android:layout_below="@+id/outputLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:scrollbars = "vertical"
+        android:gravity="bottom"/>
 
 </RelativeLayout>

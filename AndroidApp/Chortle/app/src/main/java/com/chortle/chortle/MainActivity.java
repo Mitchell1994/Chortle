@@ -117,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
         //get username and email
         String username = ((EditText) findViewById(R.id.username)).getText().toString();
         String email = ((EditText) findViewById(R.id.email)).getText().toString();
-        User user = new User(username,"fname","lname", email,"hash");
+        String password = ((EditText) findViewById(R.id.password)).getText().toString();
+        User user = new User(username,"fname","lname", email, password);
 
         print("Contacting " + url);
         Gson gson = new Gson();

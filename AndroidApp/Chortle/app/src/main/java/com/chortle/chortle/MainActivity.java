@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import com.android.volley.RequestQueue;
@@ -23,14 +24,18 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue queue;
     String url, ip;
     int count = 1;
-    User user = new User("hjafgs","fadfa","fasdhf","dafdsf","asfas");
 
     private View.OnClickListener buttonListener = new View.OnClickListener() {
         public void onClick(View v) {
             TextView mTextView = (TextView) findViewById(R.id.output);
             ip = getString(R.string.mitchell_ip);
             switch (v.getId()) {
-                case R.id.addUser:
+                case R.id.add_user:
+                    //get username and email
+                    String username = ((EditText) findViewById(R.id.username)).getText().toString();
+                    String email = ((EditText) findViewById(R.id.email)).getText().toString();
+                    User user = new User(username,"fname","lname", email,"hash");
+
                     print("Contacting " + url);
                     Gson gson = new Gson();
                     JSONObject json;
@@ -101,8 +106,8 @@ private void print(String msg) {
         setSupportActionBar(toolbar);
 
         //Set up add user button
-        Button addUser = (Button)findViewById(R.id.addUser);
-        addUser.setOnClickListener(buttonListener);
+        Button add_user = (Button)findViewById(R.id.add_user);
+        add_user.setOnClickListener(buttonListener);
 
         //Create radio buttons
         RadioButton mitchellIP = (RadioButton)findViewById(R.id.radio_mitchell);

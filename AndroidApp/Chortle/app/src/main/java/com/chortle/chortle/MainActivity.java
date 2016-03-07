@@ -132,11 +132,14 @@ public class MainActivity extends AppCompatActivity {
         final JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST,
                 url,json,
                 new Response.Listener<JSONObject>() {
-
                     @Override
                     public void onResponse(JSONObject response) {
                         TextView mTextView = (TextView) findViewById(R.id.output);
-                        print("Success");
+                        try {
+                            print("Success - " + response.getString("addUserResult"));
+                        } catch (JSONException e) {
+                            print("Success - User added, no response body given");
+                        }
                     }
                 }, new Response.ErrorListener() {
 
@@ -144,32 +147,21 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 TextView mTextView = (TextView) findViewById(R.id.output);
                 String responseDesc = "";
-                try
-                {
-                    try {
-                        String responseBody = new String( error.networkResponse.data, "utf-8" );
-                        JSONObject jsonObject = new JSONObject( responseBody );
-                        responseDesc = jsonObject.getString("addUserResult");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
 
+                try {
+                    String responseBody = new String( error.networkResponse.data, "utf-8" );
+                    JSONObject jsonObject = new JSONObject( responseBody );
+                    responseDesc = jsonObject.getString("addUserResult");
+                    //print("Failure: " + jsonObject.getString("addUserResult"));
                     print("Failure (" + error.networkResponse.statusCode + ") - " + responseDesc);
-                }
-                catch (NullPointerException e)
-                {
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (NullPointerException e) {
+
                     print("Failure and response code is null");
                 }
-
-               //TESTING
-
-                /*NetworkResponse response = error.networkResponse;
-                Map<String, String> responseHeaders = response.headers;
-                Response<String> result = Response.success(responseHeaders.get("Content-Length"), HttpHeaderParser.parseCacheHeaders(response));*/
-
-
 
             }
         }

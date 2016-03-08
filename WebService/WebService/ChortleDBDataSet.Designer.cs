@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace ChortleService {
+namespace WebService {
     
     
     /// <summary>
@@ -3889,7 +3889,7 @@ namespace ChortleService {
         }
     }
 }
-namespace ChortleService.ChortleDBDataSetTableAdapters {
+namespace WebService.ChortleDBDataSetTableAdapters {
     
     
     /// <summary>
@@ -4056,7 +4056,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ChortleService.Properties.Settings.Default.ChortleDBConnectionString;
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4400,7 +4400,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ChortleService.Properties.Settings.Default.ChortleDBConnectionString;
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4628,7 +4628,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ChortleService.Properties.Settings.Default.ChortleDBConnectionString;
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4864,7 +4864,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ChortleService.Properties.Settings.Default.ChortleDBConnectionString;
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5172,7 +5172,7 @@ SELECT ID, GroupID, TaskName, TaskDescription, StartDate, Frequency, Repetitions
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ChortleService.Properties.Settings.Default.ChortleDBConnectionString;
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5728,7 +5728,7 @@ SELECT ID, GroupID, TaskName, TaskDescription, StartDate, Frequency, Repetitions
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ChortleService.Properties.Settings.Default.ChortleDBConnectionString;
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5993,7 +5993,7 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ChortleService.Properties.Settings.Default.ChortleDBConnectionString;
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

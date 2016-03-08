@@ -143,27 +143,25 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, new Response.ErrorListener() {
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                TextView mTextView = (TextView) findViewById(R.id.output);
-                String responseDesc = "";
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        TextView mTextView = (TextView) findViewById(R.id.output);
+                        String responseDesc = "";
+                        String errorMessage = "Failure (" + error.networkResponse.statusCode + ")";
+                        try {
+                            String responseBody = new String( error.networkResponse.data, "utf-8" );
+                            JSONObject jsonObject = new JSONObject( responseBody );
+                            responseDesc = jsonObject.getString("addUserResult");
+                            errorMessage += " - " + responseDesc;
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (NullPointerException e) {
 
-                try {
-                    String responseBody = new String( error.networkResponse.data, "utf-8" );
-                    JSONObject jsonObject = new JSONObject( responseBody );
-                    responseDesc = jsonObject.getString("addUserResult");
-                    //print("Failure: " + jsonObject.getString("addUserResult"));
-                    print("Failure (" + error.networkResponse.statusCode + ") - " + responseDesc);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (NullPointerException e) {
-
-                    print("Failure and response code is null");
-                }
-
-            }
+                        }
+                        print(errorMessage);
+                    }
         }
         );
         print("Sending " + new String(request.getBody()));

@@ -39,13 +39,12 @@ namespace ChortleService
         
         [WebInvoke(Method = "POST", UriTemplate = "users", BodyStyle = WebMessageBodyStyle.Wrapped, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
-        void addUser(String username, String firstname, String lastname, String email, String hash)
+        String addUser(String username, String firstname, String lastname, String email, String hash)
         {
             Console.WriteLine(DateTime.Now + " Packet receieved");
 
             //Stores the response object that will be sent back to the android client
             OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
-
             String description = "User added";
             response.StatusCode = System.Net.HttpStatusCode.OK;
 
@@ -78,8 +77,7 @@ namespace ChortleService
 
             //dsiplay and respond with the description
             Console.WriteLine(description);
-            response.StatusDescription = description;
-
+            return description;
         }
 
         [WebGet(UriTemplate = "users")]

@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             json = null;
         }
         final JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST,
-                url,json,
+                url, json,
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -142,27 +142,20 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 TextView mTextView = (TextView) findViewById(R.id.output);
                 print("Failure (" + error.networkResponse.statusCode + ")");
-
-                               /* //TESTING
-
-                                NetworkResponse response = error.networkResponse;
-                                Map<String, String> responseHeaders = response.headers;
-                                Response<String> result = Response.success(responseHeaders.get("Content-Length"), HttpHeaderParser.parseCacheHeaders(response));
-
-                                //Test 2
-                                try {
-                                    String responseBody = new String( error.networkResponse.data, "utf-8" );
-                                    JSONObject jsonObject = new JSONObject( responseBody );
-                                    print(jsonObject.toString());
-                                } catch (UnsupportedEncodingException e) {
-                                    e.printStackTrace();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }*/
-
+                print(new String(error.networkResponse.data));
             }
-        }
-        );
+        }){
+            @Override
+            protected VolleyError parseNetworkError(VolleyError volleyError) {
+                return super.parseNetworkError(volleyError);
+            }
+
+            @Override
+            public void deliverError(VolleyError error) {
+                super.deliverError(error);
+            }
+        };
+
         print("Sending " + new String(request.getBody()));
         queue.add(request);
     }

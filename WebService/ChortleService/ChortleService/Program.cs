@@ -45,6 +45,7 @@ namespace ChortleService
 
             //Stores the response object that will be sent back to the android client
             OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+
             String description = "User added";
             response.StatusCode = System.Net.HttpStatusCode.OK;
 
@@ -78,6 +79,7 @@ namespace ChortleService
             //dsiplay and respond with the description
             Console.WriteLine(description);
             response.StatusDescription = description;
+
         }
 
         [WebGet(UriTemplate = "users")]

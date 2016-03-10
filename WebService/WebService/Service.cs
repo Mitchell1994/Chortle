@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.Text;
 using WebService.ChortleDBDataSetTableAdapters;
 using System.ServiceModel.Web;
+using System.Data;
 
 namespace WebService
 {
@@ -21,12 +22,12 @@ namespace WebService
             //Stores the response object that will be sent back to the android client
             OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
             String description = "User added";
-            response.StatusCode = System.Net.HttpStatusCode.OK;
 
             //Tries to add the new user
             try
             {
                 userTable.Insert(username, firstname, lastname, email, hash);
+                response.StatusCode = System.Net.HttpStatusCode.OK;
             }
             catch (SqlException e)
             {
@@ -53,6 +54,40 @@ namespace WebService
             //respond with the description
             response.StatusDescription = description;
             return description;
+        }
+
+        public User getUser(String username)
+        {
+            //Stores the response object that will be sent back to the android client
+            OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+
+            Console.WriteLine("getting");
+
+            ChortleDBDataSet.UserRow[] users = (from userData in userTable.GetData().AsEnumerable()
+                                where userData.Username == username
+                                select userData).ToArray();
+            
+
+            if(users.Length == 1)
+            {
+                response.StatusCode = System.Net.HttpStatusCode.Found;
+                ChortleDBDataSet.UserRow userDetails = users[0];
+                User user = new User(userDetails);
+                response.StatusCode = System.Net.HttpStatusCode.Found;
+                response.StatusDescription = "User found";
+                return user;
+            }
+            else if(users.Length == 0){
+                response.StatusCode = System.Net.HttpStatusCode.NotFound;
+                response.StatusDescription = "User not found";
+                return null;
+            }
+            else
+            {
+                response.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+                response.StatusDescription = "Something went wrong";
+                return null;
+            }
         }
     }
 }

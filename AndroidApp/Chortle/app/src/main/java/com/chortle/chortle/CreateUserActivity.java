@@ -48,11 +48,8 @@ public class CreateUserActivity extends AppCompatActivity{
         ((TextView) findViewById(R.id.url)).setText(url);
     }
 
-    public void submitUser2(View view) {
-        ((TextView) findViewById(R.id.url)).setText("Button press recorded.");
-    }
 
-        public void submitUser(View view){
+    public void submitUser(View view){
         String username,fname,lname,email,password;
         username = ((EditText) findViewById(R.id.username)).getText().toString();
         fname = ((EditText) findViewById(R.id.firstname)).getText().toString();
@@ -111,11 +108,15 @@ public class CreateUserActivity extends AppCompatActivity{
 
                 }
 
+                //Display error message as a toast
                 Toast.makeText(getApplicationContext(),(errorMessage),Toast.LENGTH_SHORT).show();
             }
-        }
-        );
+        });
+
+        //Display data to be sent as a toast
         Toast.makeText(getApplicationContext(),("Sending " + new String(request.getBody())),Toast.LENGTH_SHORT).show();
+
+        //Add new user request to the queue
         queue.add(request);
     }
 

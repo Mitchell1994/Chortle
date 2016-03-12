@@ -122,74 +122,12 @@ public class MainActivity extends AppCompatActivity {
     private void startNewUserActivity(){
         Intent intentNewUser = new Intent(this, CreateUserActivity.class);
 
-        //Get user details
-        String username = ((EditText) findViewById(R.id.username)).getText().toString();
-        String email = ((EditText) findViewById(R.id.email)).getText().toString();
-        String password = ((EditText) findViewById(R.id.password)).getText().toString();
-
-        intentNewUser.putExtra("USERNAME", username);
-        intentNewUser.putExtra("EMAIL", email);
-        intentNewUser.putExtra("PASSWORD", password);
+        //Add Server URL to the new user activity
         intentNewUser.putExtra("URL", url);
 
         startActivity(intentNewUser);
 
 
     }
-
-    private void addUser(){
-        //get username and email
-        String username = ((EditText) findViewById(R.id.username)).getText().toString();
-        String email = ((EditText) findViewById(R.id.email)).getText().toString();
-        String password = ((EditText) findViewById(R.id.password)).getText().toString();
-        User user = new User(username,"fname","lname", email, password);
-
-        print("Contacting " + url);
-        Gson gson = new Gson();
-        JSONObject json;
-        try {
-            json = new JSONObject(gson.toJson(user));
-        }catch(JSONException e){
-            json = null;
-        }
-        final JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST,
-                url,json,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        TextView mTextView = (TextView) findViewById(R.id.output);
-                        try {
-                            print("Success - " + response.getString("addUserResult"));
-                        } catch (JSONException e) {
-                            print("Success - User added, no response body given");
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        TextView mTextView = (TextView) findViewById(R.id.output);
-                        String responseDesc = "";
-                        String errorMessage = "Failure (" + error.networkResponse.statusCode + ")";
-                        try {
-                            String responseBody = new String( error.networkResponse.data, "utf-8" );
-                            JSONObject jsonObject = new JSONObject( responseBody );
-                            responseDesc = jsonObject.getString("addUserResult");
-                            errorMessage += " - " + responseDesc;
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (NullPointerException e) {
-
-                        }
-                        print(errorMessage);
-                    }
-        }
-        );
-        print("Sending " + new String(request.getBody()));
-        queue.add(request);
-    }
-
 
 }

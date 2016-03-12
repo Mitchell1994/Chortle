@@ -1,5 +1,6 @@
 package com.chortle.chortle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -80,7 +81,11 @@ public class MainActivity extends AppCompatActivity {
             ip = getString(R.string.mitchell_ip);
             switch (v.getId()) {
                 case R.id.add_user:
-                    addUser();
+                    //addUser();
+
+                    //Change activity to new user
+                    startNewUserActivity();
+
                     break;
                 case R.id.radio_mitchell:
                     ip = getString(R.string.mitchell_ip);
@@ -112,6 +117,24 @@ public class MainActivity extends AppCompatActivity {
         TextView mTextView = (TextView) findViewById(R.id.output);
         mTextView.append(count + ". " + msg + "\n");
         count++;
+    }
+
+    private void startNewUserActivity(){
+        Intent intentNewUser = new Intent(this, CreateUserActivity.class);
+
+        //Get user details
+        String username = ((EditText) findViewById(R.id.username)).getText().toString();
+        String email = ((EditText) findViewById(R.id.email)).getText().toString();
+        String password = ((EditText) findViewById(R.id.password)).getText().toString();
+
+        intentNewUser.putExtra("USERNAME", username);
+        intentNewUser.putExtra("EMAIL", email);
+        intentNewUser.putExtra("PASSWORD", password);
+        intentNewUser.putExtra("URL", url);
+
+        startActivity(intentNewUser);
+
+
     }
 
     private void addUser(){
@@ -167,4 +190,6 @@ public class MainActivity extends AppCompatActivity {
         print("Sending " + new String(request.getBody()));
         queue.add(request);
     }
+
+
 }

@@ -26,7 +26,7 @@
     </style>
 
     <style name="EditText">
-        <item name="android:layout_marginBottom">@dimen/subtitle_margin</item>
+        <!--<item name="android:layout_marginBottom">@dimen/subtitle_margin</item>-->
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:ems">12</item>
@@ -36,6 +36,7 @@
     <style name="Subtitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/subtitle_margin</item>
     </style>
 
 </resources>

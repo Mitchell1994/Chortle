@@ -13,113 +13,103 @@
     tools:showIn="@layout/app_bar_main">
 
 
-    <TextView
-        android:id="@+id/ip_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose IP"/>
-
-    <RadioGroup
-        android:id="@+id/ip_selector"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/ip_label"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:singleLine="true">
-        <RadioButton android:id="@+id/radio_mitchell"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mitchell"/>
-        <RadioButton android:id="@+id/radio_conor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Conor" />
-        <RadioButton android:id="@+id/radio_gianni"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gianni" />
-        <RadioButton android:id="@+id/radio_online_host"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Online-Host" />
-    </RadioGroup>
-
     <LinearLayout
-        android:id="@+id/username_button_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ip_selector"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:orientation="horizontal">
+        android:id="@+id/main_activity_base_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/username"
+        <TextView
+            android:id="@+id/ip_label"
             android:layout_width="wrap_content"
-            android:hint="Username"
             android:layout_height="wrap_content"
-            />
+            android:text="Choose IP"/>
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:hint="Password"
-            android:layout_height="wrap_content"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/email_button_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/username_button_layout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:hint="Email"
-            android:layout_height="wrap_content"
-            />
-
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/ip_selector"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/add_user"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:singleLine="true">
+            <RadioButton android:id="@+id/radio_mitchell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add User"
-                android:singleLine="true"/>
+                android:text="Mitchell"/>
+            <RadioButton android:id="@+id/radio_conor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conor" />
+            <RadioButton android:id="@+id/radio_gianni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gianni" />
+            <RadioButton android:id="@+id/radio_online_host"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Online-Host" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select an Activity to test"
+            style="@style/Subtitle"/>
+
+        <!--Layouts for displaing buttons to open new activities-->
+        <HorizontalScrollView
+            android:id="@+id/activity_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--Add new activity buttons here-->
+
+                <Button
+                    android:id="@+id/add_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_user"
+                    android:singleLine="true"
+                    android:onClick="startNewUserActivity"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/log_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\nLog\n------------"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/output"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:scrollbars = "vertical"
+                android:gravity="bottom"/>
         </LinearLayout>
+
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/log_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="\nLog\n------------"
-        android:layout_below="@+id/email_button_layout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/output"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_below="@+id/log_label"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:scrollbars = "vertical"
-        android:gravity="bottom"/>
 
 </RelativeLayout>

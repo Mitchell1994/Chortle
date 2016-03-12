@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Set up add user button
-        Button add_user = (Button)findViewById(R.id.add_user);
-        add_user.setOnClickListener(buttonListener);
-
         //Create radio buttons
         RadioButton mitchellIP = (RadioButton)findViewById(R.id.radio_mitchell);
         RadioButton conorIP = (RadioButton)findViewById(R.id.radio_conor);
@@ -80,13 +76,6 @@ public class MainActivity extends AppCompatActivity {
             TextView mTextView = (TextView) findViewById(R.id.output);
             ip = getString(R.string.mitchell_ip);
             switch (v.getId()) {
-                case R.id.add_user:
-                    //addUser();
-
-                    //Change activity to new user
-                    startNewUserActivity();
-
-                    break;
                 case R.id.radio_mitchell:
                     ip = getString(R.string.mitchell_ip);
                     break;
@@ -119,15 +108,12 @@ public class MainActivity extends AppCompatActivity {
         count++;
     }
 
-    private void startNewUserActivity(){
+    public void startNewUserActivity(View view){
         Intent intentNewUser = new Intent(this, CreateUserActivity.class);
 
         //Add Server URL to the new user activity
         intentNewUser.putExtra("URL", url);
-
         startActivity(intentNewUser);
-
-
     }
 
 }

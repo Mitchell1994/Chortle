@@ -20,6 +20,12 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_activity_testing"
+            style="@style/ActivityTitle"/>
+
+        <TextView
             android:id="@+id/ip_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

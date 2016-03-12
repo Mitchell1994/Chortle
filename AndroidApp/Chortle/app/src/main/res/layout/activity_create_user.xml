@@ -13,8 +13,7 @@
     <TextView
         android:id="@+id/title_create_user"
         android:text="@string/create_user"
-        style="@style/ActivityTitle"
-        android:layout_marginBottom="@dimen/title_margin" />
+        style="@style/ActivityTitle"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -16,12 +16,10 @@
         style="@style/ActivityTitle"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/title_create_user"
         android:id="@+id/linearLayout"
         android:orientation="vertical"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin">
+        style="@style/LeftMarginMainView">
 
         <!--Username-->
         <TextView

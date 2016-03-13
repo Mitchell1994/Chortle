@@ -12,11 +12,15 @@
     <string name="username">Username</string>
     <string name="username_prompt">Enter a username</string>
     <string name="password">Password</string>
-    <string name="password_prompt">Enter a password</string>
+    <string name="password_prompt">Enter your password</string>
     <string name="confirm_password">Confirm your password</string>
     <string name="email">Email Address</string>
     <string name="email_prompt">Enter an email address</string>
     <string name="fname_prompt">First name</string>
     <string name="lname_prompt">Surname</string>
     <string name="submit">Submit</string>
+
+    <string name="login_title">Login to Chortle</string>
+    <string name="email_or_username_prompt">Enter your Email or Username</string>
+    <string name="login">Login</string>
 </resources>

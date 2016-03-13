@@ -84,6 +84,7 @@
                     android:singleLine="true"
                     android:onClick="startNewUserActivity"/>
 
+
             </LinearLayout>
 
         </HorizontalScrollView>

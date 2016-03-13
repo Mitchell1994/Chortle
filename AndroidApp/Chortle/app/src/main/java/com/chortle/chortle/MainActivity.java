@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         //Define default url
-        url = "http://" + getString(R.string.mitchell_ip) + ":" + getString(R.string.port) + "/chortleservice/users";
+        url = "http://" + getString(R.string.mitchell_ip) + ":" + getString(R.string.port) + "/chortleservice";
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     || v.getId() == R.id.radio_conor
                     || v.getId() == R.id.radio_gianni
                     || v.getId() == R.id.radio_online_host){
-                url = "http://" + ip + ":" + getString(R.string.port) + "/chortleservice/users";
+                url = "http://" + ip + ":" + getString(R.string.port) + "/chortleservice";
                 print("IP set to " + ip);
             }
         }
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intentNewUser = new Intent(this, CreateUserActivity.class);
 
         //Add Server URL to the new user activity
-        intentNewUser.putExtra("URL", url);
+        intentNewUser.putExtra("URL", url + "/users");
         startActivity(intentNewUser);
     }
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intentNewGroup = new Intent(this, CreateGroupActivity.class);
 
         //Add Server URL to the new group activity
-        intentNewGroup.putExtra("URL", url);
+        intentNewGroup.putExtra("URL", url + "/groups");
         startActivity(intentNewGroup);
     }
 }

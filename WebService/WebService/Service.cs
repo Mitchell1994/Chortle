@@ -101,8 +101,9 @@ namespace WebService
             User creator = getUser(username);
 
             try {
-                groupTable.Insert(groupName, groupDesc);
+                int groupID = Convert.ToInt32(groupTable.InsertReturnID(groupName, groupDesc));
                 response.StatusCode = System.Net.HttpStatusCode.OK;
+                description += "Group Added. Group ID: " + groupID;
             }
             catch (SqlException e)
             {
@@ -110,7 +111,6 @@ namespace WebService
                 description = "Bad Request (" + e.Message + ")";
                 return description;
             }
-
 
             return description;
         }

@@ -19,6 +19,10 @@ namespace WebService
         [WebGet(UriTemplate = "users/{username}", ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
         User getUser(String username);
+
+        [WebInvoke(Method = "POST", UriTemplate = "groups", BodyStyle = WebMessageBodyStyle.Wrapped, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        [OperationContract]
+        String addGroup(String groupName, String groupDesc, String username);    
     }
 
     [DataContract]
@@ -49,6 +53,7 @@ namespace WebService
         }
     }
 
+    [DataContract]
     public class Group
     {
 

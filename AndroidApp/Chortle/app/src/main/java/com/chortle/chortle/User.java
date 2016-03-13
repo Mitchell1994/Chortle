@@ -40,7 +40,4 @@ public class User {
                 + ", hash=" + hash
                 + "]";
     }
-
-
-
 }

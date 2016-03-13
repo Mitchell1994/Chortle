@@ -63,7 +63,7 @@
             android:text="Select an Activity to test"
             style="@style/Subtitle"/>
 
-        <!--Layouts for displaing buttons to open new activities-->
+        <!--Layouts for displaying buttons to open new activities-->
         <HorizontalScrollView
             android:id="@+id/activity_selector"
             android:layout_width="wrap_content"
@@ -91,6 +91,14 @@
                     android:text="@string/login_title"
                     android:singleLine="true"
                     android:onClick="startLoginActivity"/>
+
+                <Button
+                    android:id="@+id/add_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_group"
+                    android:singleLine="true"
+                    android:onClick="startNewGroupActivity"/>
 
             </LinearLayout>
 

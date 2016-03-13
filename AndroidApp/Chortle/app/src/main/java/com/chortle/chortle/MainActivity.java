@@ -116,4 +116,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intentNewUser);
     }
 
+    public void startLoginActivity(View view){
+        Intent intentLogin = new Intent(this, LoginActivity.class);
+
+        //Add Server URL to the new user activity
+        intentLogin.putExtra("URL", url);
+        startActivity(intentLogin);
+    }
+
 }

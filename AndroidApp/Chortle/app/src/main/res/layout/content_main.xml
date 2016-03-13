@@ -84,6 +84,13 @@
                     android:singleLine="true"
                     android:onClick="startNewUserActivity"/>
 
+                <Button
+                    android:id="@+id/login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_title"
+                    android:singleLine="true"
+                    android:onClick="startLoginActivity"/>
 
             </LinearLayout>
 

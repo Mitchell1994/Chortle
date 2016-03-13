@@ -57,8 +57,14 @@
             android:layout_height="wrap_content"
             android:text="@string/login"
             android:onClick="attemptLogin"/>
-
-
     </LinearLayout>
+
+    <!--Ip address-->
+    <TextView
+        android:id="@+id/url"
+        android:text="URL UNDEFINED"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        style="@style/Subtitle"/>
 
 </RelativeLayout>

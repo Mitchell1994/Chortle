@@ -116,4 +116,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intentNewUser);
     }
 
+    public void startNewGroupActivity(View view){
+        Intent intentNewGroup = new Intent(this, CreateGroupActivity.class);
+
+        //Add Server URL to the new group activity
+        intentNewGroup.putExtra("URL", url);
+        startActivity(intentNewGroup);
+    }
 }

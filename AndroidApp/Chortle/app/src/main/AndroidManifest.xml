@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateUserActivity"></activity>
+        <activity android:name=".CreateGroupActivity"></activity>
     </application>
 
 </manifest>

@@ -5,10 +5,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
-    <string name="create_user">Create a new user</string>
     <string name="main_activity_testing">Chortle Testing - Home</string>
 
+    <string name="submit">Submit</string>
+
+    <!--User creation string-->
+    <string name="create_user">Create a new user</string>
     <string name="username">Username</string>
     <string name="username_prompt">Enter a username</string>
     <string name="password">Password</string>
@@ -18,5 +20,9 @@
     <string name="email_prompt">Enter an email address</string>
     <string name="fname_prompt">First name</string>
     <string name="lname_prompt">Surname</string>
-    <string name="submit">Submit</string>
+
+    <!--User creation string-->
+    <string name="create_group">Create a new group</string>
+    <string name="group_name_prompt">Enter a group name</string>
+    <string name="group_description_prompt">Enter a group description</string>
 </resources>

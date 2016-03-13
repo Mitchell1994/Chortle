@@ -31,6 +31,8 @@
 
         <EditText
             android:id="@+id/username"
+            android:inputType="text"
+            android:singleLine="true"
             style="@style/EditText"/>
 
         <!--Password-->
@@ -65,7 +67,6 @@
                     android:id="@+id/firstname"
                     android:inputType="textPersonName"
                     style="@style/EditText"/>
-
             </LinearLayout>
 
             <LinearLayout

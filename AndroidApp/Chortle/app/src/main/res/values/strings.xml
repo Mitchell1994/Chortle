@@ -25,5 +25,4 @@
     <string name="create_group">Create a new group</string>
     <string name="group_name_prompt">Enter a group name</string>
     <string name="group_description_prompt">Enter a group description</string>
-
 </resources>

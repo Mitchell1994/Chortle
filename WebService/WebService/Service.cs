@@ -8,6 +8,7 @@ using System.Text;
 using WebService.ChortleDBDataSetTableAdapters;
 using System.ServiceModel.Web;
 using System.Data;
+using System.Security.Cryptography;
 
 namespace WebService
 {
@@ -92,6 +93,26 @@ namespace WebService
                 return null;
             }
         }
+
+        public class HashGeneration
+        {
+            private static string ComputeHash(string input, HashAlgorithm algorithm)
+            {
+
+                Byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                Byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < hashedBytes.Length; i++)
+                {
+                    sb.Append(String.Format("{0:x2}", hashedBytes[i]));
+                }
+
+                return sb.ToString();
+            }
+        }
+
 
         public String addGroup(String groupName, String groupDescription, String username) 
         {

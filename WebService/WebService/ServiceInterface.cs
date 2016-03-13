@@ -22,7 +22,7 @@ namespace WebService
 
         [WebInvoke(Method = "POST", UriTemplate = "groups", BodyStyle = WebMessageBodyStyle.Wrapped, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         [OperationContract]
-        String addGroup(String groupName, String groupDesc, String username);    
+        String addGroup(String groupName, String groupDescription, String username);    
     }
 
     [DataContract]
@@ -61,12 +61,12 @@ namespace WebService
         public string groupName { get; set; }
 
         [DataMember]
-        public string groupDesc { get; set; }
+        public string groupDescription { get; set; }
 
         public Group(ChortleDBDataSet.GroupRow groupDetails)
         {
             groupName = groupDetails.GroupName;
-            groupDesc = groupDetails.Description;
+            groupDescription = groupDetails.Description;
         }
     }
 

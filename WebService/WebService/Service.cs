@@ -93,7 +93,7 @@ namespace WebService
             }
         }
 
-        public String addGroup(String groupName, String groupDesc, String username) 
+        public String addGroup(String groupName, String groupDescription, String username) 
         {
             OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
             String description = "";
@@ -101,7 +101,7 @@ namespace WebService
             User creator = getUser(username);
 
             try {
-                int groupID = Convert.ToInt32(groupTable.InsertReturnID(groupName, groupDesc));
+                int groupID = Convert.ToInt32(groupTable.InsertReturnID(groupName, groupDescription));
                 response.StatusCode = System.Net.HttpStatusCode.OK;
                 description += "Group Added. Group ID: " + groupID;
             }

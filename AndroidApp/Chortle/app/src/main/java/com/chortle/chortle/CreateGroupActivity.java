@@ -33,7 +33,6 @@ public class CreateGroupActivity extends AppCompatActivity{
         ((TextView) findViewById(R.id.url)).setText(url);
     }
 
-
     public void submitGroup(View view){
         String groupName,groupDescription;
         groupName = ((EditText) findViewById(R.id.group_name)).getText().toString();
@@ -41,6 +40,5 @@ public class CreateGroupActivity extends AppCompatActivity{
 
         Group group = new Group(groupName,groupDescription);
         new PostRequestHandler(getApplicationContext(),url,group,"addGroupResult",Volley.newRequestQueue(this)).send();
-
     }
 }

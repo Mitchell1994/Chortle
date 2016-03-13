@@ -16,7 +16,11 @@ namespace WebService
     {
 
         UserTableAdapter userTable = new UserTableAdapter();
-
+        GroupTableAdapter groupTable = new GroupTableAdapter();
+        GroupUserTableAdapter groupUserTable = new GroupUserTableAdapter();
+        GroupAdminTableAdapter groupAdminTable = new GroupAdminTableAdapter();
+        GroupOwnerTableAdapter groupOwnerTable = new GroupOwnerTableAdapter();
+      
         public String addUser(String username, String firstname, String lastname, String email, String hash)
         {
             //Stores the response object that will be sent back to the android client
@@ -34,8 +38,6 @@ namespace WebService
                 //Default response is a conflict
                 response.StatusCode = System.Net.HttpStatusCode.Conflict;
 
-                description = "Bad Request (" + e.Message + ")";
-
                 //Check what the conflict is
                 if (userTable.GetData().AsEnumerable().Any(row => row.Username == username))
                 {
@@ -48,6 +50,7 @@ namespace WebService
                 else
                 {
                     response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    description = "Bad Request (" + e.Message + ")";
                 }
             }
 
@@ -68,7 +71,7 @@ namespace WebService
                                 select userData).ToArray();
             
 
-            if(users.Length == 1)
+            if (users.Length == 1)
             {
                 response.StatusCode = System.Net.HttpStatusCode.Found;
                 ChortleDBDataSet.UserRow userDetails = users[0];
@@ -77,7 +80,7 @@ namespace WebService
                 response.StatusDescription = "User found";
                 return user;
             }
-            else if(users.Length == 0){
+            else if (users.Length == 0) {
                 response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 response.StatusDescription = "User not found";
                 return null;
@@ -88,6 +91,28 @@ namespace WebService
                 response.StatusDescription = "Something went wrong";
                 return null;
             }
+        }
+
+        public String addGroup(String groupName, String groupDesc, String username) 
+        {
+            OutgoingWebResponseContext response = WebOperationContext.Current.OutgoingResponse;
+            String description = "";
+            
+            User creator = getUser(username);
+
+            try {
+                groupTable.Insert(groupName, groupDesc);
+                response.StatusCode = System.Net.HttpStatusCode.OK;
+            }
+            catch (SqlException e)
+            {
+                response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                description = "Bad Request (" + e.Message + ")";
+                return description;
+            }
+
+
+            return description;
         }
     }
 }

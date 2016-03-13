@@ -47,7 +47,22 @@ namespace WebService
             email = userDetails.Email;
             hash = userDetails.PasswordHash;
         }
+    }
 
+    public class Group
+    {
+
+        [DataMember]
+        public string groupName { get; set; }
+
+        [DataMember]
+        public string groupDesc { get; set; }
+
+        public Group(ChortleDBDataSet.GroupRow groupDetails)
+        {
+            groupName = groupDetails.GroupName;
+            groupDesc = groupDetails.Description;
+        }
     }
 
 }

@@ -60,6 +60,7 @@
     <Compile Include="ServiceInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -76,6 +77,8 @@
     <None Include="ChortleDBDataSet.xss">
       <DependentUpon>ChortleDBDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

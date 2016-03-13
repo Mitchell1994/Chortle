@@ -26,11 +26,21 @@ namespace WebService {
         
         private GroupDataTable tableGroup;
         
+        private GroupAdminDataTable tableGroupAdmin;
+        
+        private GroupOwnerDataTable tableGroupOwner;
+        
         private GroupUserDataTable tableGroupUser;
         
-        private TaskGroupAssignmentDataTable tableTaskGroupAssignment;
+        private SubgroupDataTable tableSubgroup;
+        
+        private SubgroupUserDataTable tableSubgroupUser;
         
         private TaskLogDataTable tableTaskLog;
+        
+        private TaskStatusDataTable tableTaskStatus;
+        
+        private TaskSubGroupAssignmentDataTable tableTaskSubGroupAssignment;
         
         private TaskTemplateDataTable tableTaskTemplate;
         
@@ -38,23 +48,41 @@ namespace WebService {
         
         private UserDataTable tableUser;
         
+        private UserFriendDataTable tableUserFriend;
+        
+        private global::System.Data.DataRelation relationFK_GroupAdmin_GroupUser;
+        
+        private global::System.Data.DataRelation relationFK_GroupOwner_GroupAdmin;
+        
         private global::System.Data.DataRelation relationFK_GroupUser_Group;
         
         private global::System.Data.DataRelation relationFK_GroupUser_User;
         
-        private global::System.Data.DataRelation relationFK_TaskGroupAssignment_Group;
+        private global::System.Data.DataRelation relationFK_SubGroup_Group;
         
-        private global::System.Data.DataRelation relationFK_TaskGroupAssignment_TaskTemplate;
+        private global::System.Data.DataRelation relationFK_SubgroupUser_GroupUser;
+        
+        private global::System.Data.DataRelation relationFK_SubgroupUser_Subgroup;
+        
+        private global::System.Data.DataRelation relationFK_TaskLog_TaskStatus;
         
         private global::System.Data.DataRelation relationFK_TaskLog_TaskTemplate;
         
         private global::System.Data.DataRelation relationFK_TaskLog_User;
+        
+        private global::System.Data.DataRelation relationFK_TaskSubGroupAssignment_SubGroup;
+        
+        private global::System.Data.DataRelation relationFK_TaskSubGroupAssignment_TaskTemplate;
         
         private global::System.Data.DataRelation relationFK_TaskTemplate_Group;
         
         private global::System.Data.DataRelation relationFK_TaskUserAssignment_TaskTemplate;
         
         private global::System.Data.DataRelation relationFK_TaskUserAssignment_User;
+        
+        private global::System.Data.DataRelation relationFK_UserFriend_User;
+        
+        private global::System.Data.DataRelation relationFK_UserFriend_User1;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -87,14 +115,29 @@ namespace WebService {
                 if ((ds.Tables["Group"] != null)) {
                     base.Tables.Add(new GroupDataTable(ds.Tables["Group"]));
                 }
+                if ((ds.Tables["GroupAdmin"] != null)) {
+                    base.Tables.Add(new GroupAdminDataTable(ds.Tables["GroupAdmin"]));
+                }
+                if ((ds.Tables["GroupOwner"] != null)) {
+                    base.Tables.Add(new GroupOwnerDataTable(ds.Tables["GroupOwner"]));
+                }
                 if ((ds.Tables["GroupUser"] != null)) {
                     base.Tables.Add(new GroupUserDataTable(ds.Tables["GroupUser"]));
                 }
-                if ((ds.Tables["TaskGroupAssignment"] != null)) {
-                    base.Tables.Add(new TaskGroupAssignmentDataTable(ds.Tables["TaskGroupAssignment"]));
+                if ((ds.Tables["Subgroup"] != null)) {
+                    base.Tables.Add(new SubgroupDataTable(ds.Tables["Subgroup"]));
+                }
+                if ((ds.Tables["SubgroupUser"] != null)) {
+                    base.Tables.Add(new SubgroupUserDataTable(ds.Tables["SubgroupUser"]));
                 }
                 if ((ds.Tables["TaskLog"] != null)) {
                     base.Tables.Add(new TaskLogDataTable(ds.Tables["TaskLog"]));
+                }
+                if ((ds.Tables["TaskStatus"] != null)) {
+                    base.Tables.Add(new TaskStatusDataTable(ds.Tables["TaskStatus"]));
+                }
+                if ((ds.Tables["TaskSubGroupAssignment"] != null)) {
+                    base.Tables.Add(new TaskSubGroupAssignmentDataTable(ds.Tables["TaskSubGroupAssignment"]));
                 }
                 if ((ds.Tables["TaskTemplate"] != null)) {
                     base.Tables.Add(new TaskTemplateDataTable(ds.Tables["TaskTemplate"]));
@@ -104,6 +147,9 @@ namespace WebService {
                 }
                 if ((ds.Tables["User"] != null)) {
                     base.Tables.Add(new UserDataTable(ds.Tables["User"]));
+                }
+                if ((ds.Tables["UserFriend"] != null)) {
+                    base.Tables.Add(new UserFriendDataTable(ds.Tables["UserFriend"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -137,6 +183,26 @@ namespace WebService {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public GroupAdminDataTable GroupAdmin {
+            get {
+                return this.tableGroupAdmin;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public GroupOwnerDataTable GroupOwner {
+            get {
+                return this.tableGroupOwner;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public GroupUserDataTable GroupUser {
             get {
                 return this.tableGroupUser;
@@ -147,9 +213,19 @@ namespace WebService {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TaskGroupAssignmentDataTable TaskGroupAssignment {
+        public SubgroupDataTable Subgroup {
             get {
-                return this.tableTaskGroupAssignment;
+                return this.tableSubgroup;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SubgroupUserDataTable SubgroupUser {
+            get {
+                return this.tableSubgroupUser;
             }
         }
         
@@ -160,6 +236,26 @@ namespace WebService {
         public TaskLogDataTable TaskLog {
             get {
                 return this.tableTaskLog;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TaskStatusDataTable TaskStatus {
+            get {
+                return this.tableTaskStatus;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TaskSubGroupAssignmentDataTable TaskSubGroupAssignment {
+            get {
+                return this.tableTaskSubGroupAssignment;
             }
         }
         
@@ -190,6 +286,16 @@ namespace WebService {
         public UserDataTable User {
             get {
                 return this.tableUser;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public UserFriendDataTable UserFriend {
+            get {
+                return this.tableUserFriend;
             }
         }
         
@@ -263,14 +369,29 @@ namespace WebService {
                 if ((ds.Tables["Group"] != null)) {
                     base.Tables.Add(new GroupDataTable(ds.Tables["Group"]));
                 }
+                if ((ds.Tables["GroupAdmin"] != null)) {
+                    base.Tables.Add(new GroupAdminDataTable(ds.Tables["GroupAdmin"]));
+                }
+                if ((ds.Tables["GroupOwner"] != null)) {
+                    base.Tables.Add(new GroupOwnerDataTable(ds.Tables["GroupOwner"]));
+                }
                 if ((ds.Tables["GroupUser"] != null)) {
                     base.Tables.Add(new GroupUserDataTable(ds.Tables["GroupUser"]));
                 }
-                if ((ds.Tables["TaskGroupAssignment"] != null)) {
-                    base.Tables.Add(new TaskGroupAssignmentDataTable(ds.Tables["TaskGroupAssignment"]));
+                if ((ds.Tables["Subgroup"] != null)) {
+                    base.Tables.Add(new SubgroupDataTable(ds.Tables["Subgroup"]));
+                }
+                if ((ds.Tables["SubgroupUser"] != null)) {
+                    base.Tables.Add(new SubgroupUserDataTable(ds.Tables["SubgroupUser"]));
                 }
                 if ((ds.Tables["TaskLog"] != null)) {
                     base.Tables.Add(new TaskLogDataTable(ds.Tables["TaskLog"]));
+                }
+                if ((ds.Tables["TaskStatus"] != null)) {
+                    base.Tables.Add(new TaskStatusDataTable(ds.Tables["TaskStatus"]));
+                }
+                if ((ds.Tables["TaskSubGroupAssignment"] != null)) {
+                    base.Tables.Add(new TaskSubGroupAssignmentDataTable(ds.Tables["TaskSubGroupAssignment"]));
                 }
                 if ((ds.Tables["TaskTemplate"] != null)) {
                     base.Tables.Add(new TaskTemplateDataTable(ds.Tables["TaskTemplate"]));
@@ -280,6 +401,9 @@ namespace WebService {
                 }
                 if ((ds.Tables["User"] != null)) {
                     base.Tables.Add(new UserDataTable(ds.Tables["User"]));
+                }
+                if ((ds.Tables["UserFriend"] != null)) {
+                    base.Tables.Add(new UserFriendDataTable(ds.Tables["UserFriend"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -320,22 +444,52 @@ namespace WebService {
                     this.tableGroup.InitVars();
                 }
             }
+            this.tableGroupAdmin = ((GroupAdminDataTable)(base.Tables["GroupAdmin"]));
+            if ((initTable == true)) {
+                if ((this.tableGroupAdmin != null)) {
+                    this.tableGroupAdmin.InitVars();
+                }
+            }
+            this.tableGroupOwner = ((GroupOwnerDataTable)(base.Tables["GroupOwner"]));
+            if ((initTable == true)) {
+                if ((this.tableGroupOwner != null)) {
+                    this.tableGroupOwner.InitVars();
+                }
+            }
             this.tableGroupUser = ((GroupUserDataTable)(base.Tables["GroupUser"]));
             if ((initTable == true)) {
                 if ((this.tableGroupUser != null)) {
                     this.tableGroupUser.InitVars();
                 }
             }
-            this.tableTaskGroupAssignment = ((TaskGroupAssignmentDataTable)(base.Tables["TaskGroupAssignment"]));
+            this.tableSubgroup = ((SubgroupDataTable)(base.Tables["Subgroup"]));
             if ((initTable == true)) {
-                if ((this.tableTaskGroupAssignment != null)) {
-                    this.tableTaskGroupAssignment.InitVars();
+                if ((this.tableSubgroup != null)) {
+                    this.tableSubgroup.InitVars();
+                }
+            }
+            this.tableSubgroupUser = ((SubgroupUserDataTable)(base.Tables["SubgroupUser"]));
+            if ((initTable == true)) {
+                if ((this.tableSubgroupUser != null)) {
+                    this.tableSubgroupUser.InitVars();
                 }
             }
             this.tableTaskLog = ((TaskLogDataTable)(base.Tables["TaskLog"]));
             if ((initTable == true)) {
                 if ((this.tableTaskLog != null)) {
                     this.tableTaskLog.InitVars();
+                }
+            }
+            this.tableTaskStatus = ((TaskStatusDataTable)(base.Tables["TaskStatus"]));
+            if ((initTable == true)) {
+                if ((this.tableTaskStatus != null)) {
+                    this.tableTaskStatus.InitVars();
+                }
+            }
+            this.tableTaskSubGroupAssignment = ((TaskSubGroupAssignmentDataTable)(base.Tables["TaskSubGroupAssignment"]));
+            if ((initTable == true)) {
+                if ((this.tableTaskSubGroupAssignment != null)) {
+                    this.tableTaskSubGroupAssignment.InitVars();
                 }
             }
             this.tableTaskTemplate = ((TaskTemplateDataTable)(base.Tables["TaskTemplate"]));
@@ -356,15 +510,29 @@ namespace WebService {
                     this.tableUser.InitVars();
                 }
             }
+            this.tableUserFriend = ((UserFriendDataTable)(base.Tables["UserFriend"]));
+            if ((initTable == true)) {
+                if ((this.tableUserFriend != null)) {
+                    this.tableUserFriend.InitVars();
+                }
+            }
+            this.relationFK_GroupAdmin_GroupUser = this.Relations["FK_GroupAdmin_GroupUser"];
+            this.relationFK_GroupOwner_GroupAdmin = this.Relations["FK_GroupOwner_GroupAdmin"];
             this.relationFK_GroupUser_Group = this.Relations["FK_GroupUser_Group"];
             this.relationFK_GroupUser_User = this.Relations["FK_GroupUser_User"];
-            this.relationFK_TaskGroupAssignment_Group = this.Relations["FK_TaskGroupAssignment_Group"];
-            this.relationFK_TaskGroupAssignment_TaskTemplate = this.Relations["FK_TaskGroupAssignment_TaskTemplate"];
+            this.relationFK_SubGroup_Group = this.Relations["FK_SubGroup_Group"];
+            this.relationFK_SubgroupUser_GroupUser = this.Relations["FK_SubgroupUser_GroupUser"];
+            this.relationFK_SubgroupUser_Subgroup = this.Relations["FK_SubgroupUser_Subgroup"];
+            this.relationFK_TaskLog_TaskStatus = this.Relations["FK_TaskLog_TaskStatus"];
             this.relationFK_TaskLog_TaskTemplate = this.Relations["FK_TaskLog_TaskTemplate"];
             this.relationFK_TaskLog_User = this.Relations["FK_TaskLog_User"];
+            this.relationFK_TaskSubGroupAssignment_SubGroup = this.Relations["FK_TaskSubGroupAssignment_SubGroup"];
+            this.relationFK_TaskSubGroupAssignment_TaskTemplate = this.Relations["FK_TaskSubGroupAssignment_TaskTemplate"];
             this.relationFK_TaskTemplate_Group = this.Relations["FK_TaskTemplate_Group"];
             this.relationFK_TaskUserAssignment_TaskTemplate = this.Relations["FK_TaskUserAssignment_TaskTemplate"];
             this.relationFK_TaskUserAssignment_User = this.Relations["FK_TaskUserAssignment_User"];
+            this.relationFK_UserFriend_User = this.Relations["FK_UserFriend_User"];
+            this.relationFK_UserFriend_User1 = this.Relations["FK_UserFriend_User1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -377,18 +545,42 @@ namespace WebService {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableGroup = new GroupDataTable();
             base.Tables.Add(this.tableGroup);
+            this.tableGroupAdmin = new GroupAdminDataTable();
+            base.Tables.Add(this.tableGroupAdmin);
+            this.tableGroupOwner = new GroupOwnerDataTable();
+            base.Tables.Add(this.tableGroupOwner);
             this.tableGroupUser = new GroupUserDataTable();
             base.Tables.Add(this.tableGroupUser);
-            this.tableTaskGroupAssignment = new TaskGroupAssignmentDataTable();
-            base.Tables.Add(this.tableTaskGroupAssignment);
+            this.tableSubgroup = new SubgroupDataTable();
+            base.Tables.Add(this.tableSubgroup);
+            this.tableSubgroupUser = new SubgroupUserDataTable();
+            base.Tables.Add(this.tableSubgroupUser);
             this.tableTaskLog = new TaskLogDataTable();
             base.Tables.Add(this.tableTaskLog);
+            this.tableTaskStatus = new TaskStatusDataTable();
+            base.Tables.Add(this.tableTaskStatus);
+            this.tableTaskSubGroupAssignment = new TaskSubGroupAssignmentDataTable();
+            base.Tables.Add(this.tableTaskSubGroupAssignment);
             this.tableTaskTemplate = new TaskTemplateDataTable();
             base.Tables.Add(this.tableTaskTemplate);
             this.tableTaskUserAssignment = new TaskUserAssignmentDataTable();
             base.Tables.Add(this.tableTaskUserAssignment);
             this.tableUser = new UserDataTable();
             base.Tables.Add(this.tableUser);
+            this.tableUserFriend = new UserFriendDataTable();
+            base.Tables.Add(this.tableUserFriend);
+            this.relationFK_GroupAdmin_GroupUser = new global::System.Data.DataRelation("FK_GroupAdmin_GroupUser", new global::System.Data.DataColumn[] {
+                        this.tableGroupUser.GroupIDColumn,
+                        this.tableGroupUser.UserIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableGroupAdmin.GroupIDColumn,
+                        this.tableGroupAdmin.AdminIDColumn}, false);
+            this.Relations.Add(this.relationFK_GroupAdmin_GroupUser);
+            this.relationFK_GroupOwner_GroupAdmin = new global::System.Data.DataRelation("FK_GroupOwner_GroupAdmin", new global::System.Data.DataColumn[] {
+                        this.tableGroupAdmin.GroupIDColumn,
+                        this.tableGroupAdmin.AdminIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableGroupOwner.GroupIDColumn,
+                        this.tableGroupOwner.OwnerIDColumn}, false);
+            this.Relations.Add(this.relationFK_GroupOwner_GroupAdmin);
             this.relationFK_GroupUser_Group = new global::System.Data.DataRelation("FK_GroupUser_Group", new global::System.Data.DataColumn[] {
                         this.tableGroup.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableGroupUser.GroupIDColumn}, false);
@@ -397,14 +589,22 @@ namespace WebService {
                         this.tableUser.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableGroupUser.UserIDColumn}, false);
             this.Relations.Add(this.relationFK_GroupUser_User);
-            this.relationFK_TaskGroupAssignment_Group = new global::System.Data.DataRelation("FK_TaskGroupAssignment_Group", new global::System.Data.DataColumn[] {
+            this.relationFK_SubGroup_Group = new global::System.Data.DataRelation("FK_SubGroup_Group", new global::System.Data.DataColumn[] {
                         this.tableGroup.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTaskGroupAssignment.GroupIDColumn}, false);
-            this.Relations.Add(this.relationFK_TaskGroupAssignment_Group);
-            this.relationFK_TaskGroupAssignment_TaskTemplate = new global::System.Data.DataRelation("FK_TaskGroupAssignment_TaskTemplate", new global::System.Data.DataColumn[] {
-                        this.tableTaskTemplate.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTaskGroupAssignment.TaskTemplateIDColumn}, false);
-            this.Relations.Add(this.relationFK_TaskGroupAssignment_TaskTemplate);
+                        this.tableSubgroup.ParentGroupIDColumn}, false);
+            this.Relations.Add(this.relationFK_SubGroup_Group);
+            this.relationFK_SubgroupUser_GroupUser = new global::System.Data.DataRelation("FK_SubgroupUser_GroupUser", new global::System.Data.DataColumn[] {
+                        this.tableGroupUser.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSubgroupUser.GroupUserIDColumn}, false);
+            this.Relations.Add(this.relationFK_SubgroupUser_GroupUser);
+            this.relationFK_SubgroupUser_Subgroup = new global::System.Data.DataRelation("FK_SubgroupUser_Subgroup", new global::System.Data.DataColumn[] {
+                        this.tableSubgroup.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSubgroupUser.SubgroupIDColumn}, false);
+            this.Relations.Add(this.relationFK_SubgroupUser_Subgroup);
+            this.relationFK_TaskLog_TaskStatus = new global::System.Data.DataRelation("FK_TaskLog_TaskStatus", new global::System.Data.DataColumn[] {
+                        this.tableTaskStatus.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTaskLog.StatusColumn}, false);
+            this.Relations.Add(this.relationFK_TaskLog_TaskStatus);
             this.relationFK_TaskLog_TaskTemplate = new global::System.Data.DataRelation("FK_TaskLog_TaskTemplate", new global::System.Data.DataColumn[] {
                         this.tableTaskTemplate.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableTaskLog.TaskTemplateIDColumn}, false);
@@ -413,6 +613,14 @@ namespace WebService {
                         this.tableUser.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableTaskLog.UserIDColumn}, false);
             this.Relations.Add(this.relationFK_TaskLog_User);
+            this.relationFK_TaskSubGroupAssignment_SubGroup = new global::System.Data.DataRelation("FK_TaskSubGroupAssignment_SubGroup", new global::System.Data.DataColumn[] {
+                        this.tableSubgroup.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTaskSubGroupAssignment.SubGroupIDColumn}, false);
+            this.Relations.Add(this.relationFK_TaskSubGroupAssignment_SubGroup);
+            this.relationFK_TaskSubGroupAssignment_TaskTemplate = new global::System.Data.DataRelation("FK_TaskSubGroupAssignment_TaskTemplate", new global::System.Data.DataColumn[] {
+                        this.tableTaskTemplate.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTaskSubGroupAssignment.TaskTemplateIDColumn}, false);
+            this.Relations.Add(this.relationFK_TaskSubGroupAssignment_TaskTemplate);
             this.relationFK_TaskTemplate_Group = new global::System.Data.DataRelation("FK_TaskTemplate_Group", new global::System.Data.DataColumn[] {
                         this.tableGroup.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableTaskTemplate.GroupIDColumn}, false);
@@ -425,11 +633,31 @@ namespace WebService {
                         this.tableUser.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableTaskUserAssignment.UserIDColumn}, false);
             this.Relations.Add(this.relationFK_TaskUserAssignment_User);
+            this.relationFK_UserFriend_User = new global::System.Data.DataRelation("FK_UserFriend_User", new global::System.Data.DataColumn[] {
+                        this.tableUser.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUserFriend.UserIDColumn}, false);
+            this.Relations.Add(this.relationFK_UserFriend_User);
+            this.relationFK_UserFriend_User1 = new global::System.Data.DataRelation("FK_UserFriend_User1", new global::System.Data.DataColumn[] {
+                        this.tableUser.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUserFriend.FriendIDColumn}, false);
+            this.Relations.Add(this.relationFK_UserFriend_User1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeGroup() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeGroupAdmin() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeGroupOwner() {
             return false;
         }
         
@@ -441,13 +669,31 @@ namespace WebService {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTaskGroupAssignment() {
+        private bool ShouldSerializeSubgroup() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeSubgroupUser() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeTaskLog() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeTaskStatus() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeTaskSubGroupAssignment() {
             return false;
         }
         
@@ -466,6 +712,12 @@ namespace WebService {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeUser() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeUserFriend() {
             return false;
         }
         
@@ -528,13 +780,28 @@ namespace WebService {
         public delegate void GroupRowChangeEventHandler(object sender, GroupRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void GroupAdminRowChangeEventHandler(object sender, GroupAdminRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void GroupOwnerRowChangeEventHandler(object sender, GroupOwnerRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void GroupUserRowChangeEventHandler(object sender, GroupUserRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void TaskGroupAssignmentRowChangeEventHandler(object sender, TaskGroupAssignmentRowChangeEvent e);
+        public delegate void SubgroupRowChangeEventHandler(object sender, SubgroupRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void SubgroupUserRowChangeEventHandler(object sender, SubgroupUserRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void TaskLogRowChangeEventHandler(object sender, TaskLogRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void TaskStatusRowChangeEventHandler(object sender, TaskStatusRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void TaskSubGroupAssignmentRowChangeEventHandler(object sender, TaskSubGroupAssignmentRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void TaskTemplateRowChangeEventHandler(object sender, TaskTemplateRowChangeEvent e);
@@ -544,6 +811,9 @@ namespace WebService {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void UserRowChangeEventHandler(object sender, UserRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void UserFriendRowChangeEventHandler(object sender, UserFriendRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -555,8 +825,6 @@ namespace WebService {
             private global::System.Data.DataColumn columnID;
             
             private global::System.Data.DataColumn columnGroupName;
-            
-            private global::System.Data.DataColumn columnParentGroupID;
             
             private global::System.Data.DataColumn columnDescription;
             
@@ -611,14 +879,6 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ParentGroupIDColumn {
-                get {
-                    return this.columnParentGroupID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn DescriptionColumn {
                 get {
                     return this.columnDescription;
@@ -662,12 +922,11 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupRow AddGroupRow(string GroupName, int ParentGroupID, string Description) {
+            public GroupRow AddGroupRow(string GroupName, string Description) {
                 GroupRow rowGroupRow = ((GroupRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         GroupName,
-                        ParentGroupID,
                         Description};
                 rowGroupRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGroupRow);
@@ -700,7 +959,6 @@ namespace WebService {
             internal void InitVars() {
                 this.columnID = base.Columns["ID"];
                 this.columnGroupName = base.Columns["GroupName"];
-                this.columnParentGroupID = base.Columns["ParentGroupID"];
                 this.columnDescription = base.Columns["Description"];
             }
             
@@ -711,8 +969,6 @@ namespace WebService {
                 base.Columns.Add(this.columnID);
                 this.columnGroupName = new global::System.Data.DataColumn("GroupName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGroupName);
-                this.columnParentGroupID = new global::System.Data.DataColumn("ParentGroupID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnParentGroupID);
                 this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescription);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -857,13 +1113,561 @@ namespace WebService {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class GroupAdminDataTable : global::System.Data.TypedTableBase<GroupAdminRow> {
+            
+            private global::System.Data.DataColumn columnGroupID;
+            
+            private global::System.Data.DataColumn columnAdminID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupAdminDataTable() {
+                this.TableName = "GroupAdmin";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal GroupAdminDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected GroupAdminDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn GroupIDColumn {
+                get {
+                    return this.columnGroupID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AdminIDColumn {
+                get {
+                    return this.columnAdminID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupAdminRow this[int index] {
+                get {
+                    return ((GroupAdminRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event GroupAdminRowChangeEventHandler GroupAdminRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event GroupAdminRowChangeEventHandler GroupAdminRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event GroupAdminRowChangeEventHandler GroupAdminRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event GroupAdminRowChangeEventHandler GroupAdminRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddGroupAdminRow(GroupAdminRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupAdminRow AddGroupAdminRow(int GroupID, int AdminID) {
+                GroupAdminRow rowGroupAdminRow = ((GroupAdminRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        GroupID,
+                        AdminID};
+                rowGroupAdminRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGroupAdminRow);
+                return rowGroupAdminRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupAdminRow FindByGroupIDAdminID(int GroupID, int AdminID) {
+                return ((GroupAdminRow)(this.Rows.Find(new object[] {
+                            GroupID,
+                            AdminID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                GroupAdminDataTable cln = ((GroupAdminDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new GroupAdminDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnGroupID = base.Columns["GroupID"];
+                this.columnAdminID = base.Columns["AdminID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnGroupID = new global::System.Data.DataColumn("GroupID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroupID);
+                this.columnAdminID = new global::System.Data.DataColumn("AdminID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdminID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnGroupID,
+                                this.columnAdminID}, true));
+                this.columnGroupID.AllowDBNull = false;
+                this.columnAdminID.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupAdminRow NewGroupAdminRow() {
+                return ((GroupAdminRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new GroupAdminRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(GroupAdminRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.GroupAdminRowChanged != null)) {
+                    this.GroupAdminRowChanged(this, new GroupAdminRowChangeEvent(((GroupAdminRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.GroupAdminRowChanging != null)) {
+                    this.GroupAdminRowChanging(this, new GroupAdminRowChangeEvent(((GroupAdminRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.GroupAdminRowDeleted != null)) {
+                    this.GroupAdminRowDeleted(this, new GroupAdminRowChangeEvent(((GroupAdminRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.GroupAdminRowDeleting != null)) {
+                    this.GroupAdminRowDeleting(this, new GroupAdminRowChangeEvent(((GroupAdminRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveGroupAdminRow(GroupAdminRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ChortleDBDataSet ds = new ChortleDBDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "GroupAdminDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class GroupOwnerDataTable : global::System.Data.TypedTableBase<GroupOwnerRow> {
+            
+            private global::System.Data.DataColumn columnGroupID;
+            
+            private global::System.Data.DataColumn columnOwnerID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupOwnerDataTable() {
+                this.TableName = "GroupOwner";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal GroupOwnerDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected GroupOwnerDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn GroupIDColumn {
+                get {
+                    return this.columnGroupID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OwnerIDColumn {
+                get {
+                    return this.columnOwnerID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupOwnerRow this[int index] {
+                get {
+                    return ((GroupOwnerRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event GroupOwnerRowChangeEventHandler GroupOwnerRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event GroupOwnerRowChangeEventHandler GroupOwnerRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event GroupOwnerRowChangeEventHandler GroupOwnerRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event GroupOwnerRowChangeEventHandler GroupOwnerRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddGroupOwnerRow(GroupOwnerRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupOwnerRow AddGroupOwnerRow(int GroupID, int OwnerID) {
+                GroupOwnerRow rowGroupOwnerRow = ((GroupOwnerRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        GroupID,
+                        OwnerID};
+                rowGroupOwnerRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGroupOwnerRow);
+                return rowGroupOwnerRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupOwnerRow FindByGroupIDOwnerID(int GroupID, int OwnerID) {
+                return ((GroupOwnerRow)(this.Rows.Find(new object[] {
+                            GroupID,
+                            OwnerID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                GroupOwnerDataTable cln = ((GroupOwnerDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new GroupOwnerDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnGroupID = base.Columns["GroupID"];
+                this.columnOwnerID = base.Columns["OwnerID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnGroupID = new global::System.Data.DataColumn("GroupID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroupID);
+                this.columnOwnerID = new global::System.Data.DataColumn("OwnerID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnerID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnGroupID,
+                                this.columnOwnerID}, true));
+                this.columnGroupID.AllowDBNull = false;
+                this.columnOwnerID.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupOwnerRow NewGroupOwnerRow() {
+                return ((GroupOwnerRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new GroupOwnerRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(GroupOwnerRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.GroupOwnerRowChanged != null)) {
+                    this.GroupOwnerRowChanged(this, new GroupOwnerRowChangeEvent(((GroupOwnerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.GroupOwnerRowChanging != null)) {
+                    this.GroupOwnerRowChanging(this, new GroupOwnerRowChangeEvent(((GroupOwnerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.GroupOwnerRowDeleted != null)) {
+                    this.GroupOwnerRowDeleted(this, new GroupOwnerRowChangeEvent(((GroupOwnerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.GroupOwnerRowDeleting != null)) {
+                    this.GroupOwnerRowDeleting(this, new GroupOwnerRowChangeEvent(((GroupOwnerRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveGroupOwnerRow(GroupOwnerRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ChortleDBDataSet ds = new ChortleDBDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "GroupOwnerDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class GroupUserDataTable : global::System.Data.TypedTableBase<GroupUserRow> {
+            
+            private global::System.Data.DataColumn columnID;
             
             private global::System.Data.DataColumn columnGroupID;
             
             private global::System.Data.DataColumn columnUserID;
-            
-            private global::System.Data.DataColumn columnStatus;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -900,6 +1704,14 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn GroupIDColumn {
                 get {
                     return this.columnGroupID;
@@ -911,14 +1723,6 @@ namespace WebService {
             public global::System.Data.DataColumn UserIDColumn {
                 get {
                     return this.columnUserID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn StatusColumn {
-                get {
-                    return this.columnStatus;
                 }
             }
             
@@ -959,21 +1763,28 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GroupUserRow AddGroupUserRow(GroupRow parentGroupRowByFK_GroupUser_Group, UserRow parentUserRowByFK_GroupUser_User, byte Status) {
+            public GroupUserRow AddGroupUserRow(GroupRow parentGroupRowByFK_GroupUser_Group, UserRow parentUserRowByFK_GroupUser_User) {
                 GroupUserRow rowGroupUserRow = ((GroupUserRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
-                        Status};
+                        null};
                 if ((parentGroupRowByFK_GroupUser_Group != null)) {
-                    columnValuesArray[0] = parentGroupRowByFK_GroupUser_Group[0];
+                    columnValuesArray[1] = parentGroupRowByFK_GroupUser_Group[0];
                 }
                 if ((parentUserRowByFK_GroupUser_User != null)) {
-                    columnValuesArray[1] = parentUserRowByFK_GroupUser_User[0];
+                    columnValuesArray[2] = parentUserRowByFK_GroupUser_User[0];
                 }
                 rowGroupUserRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGroupUserRow);
                 return rowGroupUserRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupUserRow FindByID(int ID) {
+                return ((GroupUserRow)(this.Rows.Find(new object[] {
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -993,23 +1804,30 @@ namespace WebService {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnID = base.Columns["ID"];
                 this.columnGroupID = base.Columns["GroupID"];
                 this.columnUserID = base.Columns["UserID"];
-                this.columnStatus = base.Columns["Status"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
                 this.columnGroupID = new global::System.Data.DataColumn("GroupID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGroupID);
                 this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserID);
-                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
                 this.columnGroupID.AllowDBNull = false;
                 this.columnUserID.AllowDBNull = false;
-                this.columnStatus.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1141,16 +1959,20 @@ namespace WebService {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TaskGroupAssignmentDataTable : global::System.Data.TypedTableBase<TaskGroupAssignmentRow> {
+        public partial class SubgroupDataTable : global::System.Data.TypedTableBase<SubgroupRow> {
             
-            private global::System.Data.DataColumn columnGroupID;
+            private global::System.Data.DataColumn columnID;
             
-            private global::System.Data.DataColumn columnTaskTemplateID;
+            private global::System.Data.DataColumn columnParentGroupID;
+            
+            private global::System.Data.DataColumn columnName;
+            
+            private global::System.Data.DataColumn columnDescription;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskGroupAssignmentDataTable() {
-                this.TableName = "TaskGroupAssignment";
+            public SubgroupDataTable() {
+                this.TableName = "Subgroup";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1158,7 +1980,7 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TaskGroupAssignmentDataTable(global::System.Data.DataTable table) {
+            internal SubgroupDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1175,24 +1997,40 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected TaskGroupAssignmentDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected SubgroupDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn GroupIDColumn {
+            public global::System.Data.DataColumn IDColumn {
                 get {
-                    return this.columnGroupID;
+                    return this.columnID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TaskTemplateIDColumn {
+            public global::System.Data.DataColumn ParentGroupIDColumn {
                 get {
-                    return this.columnTaskTemplateID;
+                    return this.columnParentGroupID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NameColumn {
+                get {
+                    return this.columnName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescriptionColumn {
+                get {
+                    return this.columnDescription;
                 }
             }
             
@@ -1207,52 +2045,58 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskGroupAssignmentRow this[int index] {
+            public SubgroupRow this[int index] {
                 get {
-                    return ((TaskGroupAssignmentRow)(this.Rows[index]));
+                    return ((SubgroupRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TaskGroupAssignmentRowChangeEventHandler TaskGroupAssignmentRowChanging;
+            public event SubgroupRowChangeEventHandler SubgroupRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TaskGroupAssignmentRowChangeEventHandler TaskGroupAssignmentRowChanged;
+            public event SubgroupRowChangeEventHandler SubgroupRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TaskGroupAssignmentRowChangeEventHandler TaskGroupAssignmentRowDeleting;
+            public event SubgroupRowChangeEventHandler SubgroupRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TaskGroupAssignmentRowChangeEventHandler TaskGroupAssignmentRowDeleted;
+            public event SubgroupRowChangeEventHandler SubgroupRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTaskGroupAssignmentRow(TaskGroupAssignmentRow row) {
+            public void AddSubgroupRow(SubgroupRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskGroupAssignmentRow AddTaskGroupAssignmentRow(GroupRow parentGroupRowByFK_TaskGroupAssignment_Group, TaskTemplateRow parentTaskTemplateRowByFK_TaskGroupAssignment_TaskTemplate) {
-                TaskGroupAssignmentRow rowTaskGroupAssignmentRow = ((TaskGroupAssignmentRow)(this.NewRow()));
+            public SubgroupRow AddSubgroupRow(GroupRow parentGroupRowByFK_SubGroup_Group, string Name, string Description) {
+                SubgroupRow rowSubgroupRow = ((SubgroupRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        null};
-                if ((parentGroupRowByFK_TaskGroupAssignment_Group != null)) {
-                    columnValuesArray[0] = parentGroupRowByFK_TaskGroupAssignment_Group[0];
+                        null,
+                        Name,
+                        Description};
+                if ((parentGroupRowByFK_SubGroup_Group != null)) {
+                    columnValuesArray[1] = parentGroupRowByFK_SubGroup_Group[0];
                 }
-                if ((parentTaskTemplateRowByFK_TaskGroupAssignment_TaskTemplate != null)) {
-                    columnValuesArray[1] = parentTaskTemplateRowByFK_TaskGroupAssignment_TaskTemplate[0];
-                }
-                rowTaskGroupAssignmentRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTaskGroupAssignmentRow);
-                return rowTaskGroupAssignmentRow;
+                rowSubgroupRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSubgroupRow);
+                return rowSubgroupRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupRow FindByID(int ID) {
+                return ((SubgroupRow)(this.Rows.Find(new object[] {
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                TaskGroupAssignmentDataTable cln = ((TaskGroupAssignmentDataTable)(base.Clone()));
+                SubgroupDataTable cln = ((SubgroupDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1260,51 +2104,67 @@ namespace WebService {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new TaskGroupAssignmentDataTable();
+                return new SubgroupDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnGroupID = base.Columns["GroupID"];
-                this.columnTaskTemplateID = base.Columns["TaskTemplateID"];
+                this.columnID = base.Columns["ID"];
+                this.columnParentGroupID = base.Columns["ParentGroupID"];
+                this.columnName = base.Columns["Name"];
+                this.columnDescription = base.Columns["Description"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnGroupID = new global::System.Data.DataColumn("GroupID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGroupID);
-                this.columnTaskTemplateID = new global::System.Data.DataColumn("TaskTemplateID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTaskTemplateID);
-                this.columnGroupID.AllowDBNull = false;
-                this.columnTaskTemplateID.AllowDBNull = false;
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnParentGroupID = new global::System.Data.DataColumn("ParentGroupID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnParentGroupID);
+                this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnName);
+                this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescription);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
+                this.columnParentGroupID.AllowDBNull = false;
+                this.columnName.AllowDBNull = false;
+                this.columnName.MaxLength = 50;
+                this.columnDescription.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskGroupAssignmentRow NewTaskGroupAssignmentRow() {
-                return ((TaskGroupAssignmentRow)(this.NewRow()));
+            public SubgroupRow NewSubgroupRow() {
+                return ((SubgroupRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new TaskGroupAssignmentRow(builder);
+                return new SubgroupRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(TaskGroupAssignmentRow);
+                return typeof(SubgroupRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.TaskGroupAssignmentRowChanged != null)) {
-                    this.TaskGroupAssignmentRowChanged(this, new TaskGroupAssignmentRowChangeEvent(((TaskGroupAssignmentRow)(e.Row)), e.Action));
+                if ((this.SubgroupRowChanged != null)) {
+                    this.SubgroupRowChanged(this, new SubgroupRowChangeEvent(((SubgroupRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1312,8 +2172,8 @@ namespace WebService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.TaskGroupAssignmentRowChanging != null)) {
-                    this.TaskGroupAssignmentRowChanging(this, new TaskGroupAssignmentRowChangeEvent(((TaskGroupAssignmentRow)(e.Row)), e.Action));
+                if ((this.SubgroupRowChanging != null)) {
+                    this.SubgroupRowChanging(this, new SubgroupRowChangeEvent(((SubgroupRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1321,8 +2181,8 @@ namespace WebService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.TaskGroupAssignmentRowDeleted != null)) {
-                    this.TaskGroupAssignmentRowDeleted(this, new TaskGroupAssignmentRowChangeEvent(((TaskGroupAssignmentRow)(e.Row)), e.Action));
+                if ((this.SubgroupRowDeleted != null)) {
+                    this.SubgroupRowDeleted(this, new SubgroupRowChangeEvent(((SubgroupRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1330,14 +2190,14 @@ namespace WebService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.TaskGroupAssignmentRowDeleting != null)) {
-                    this.TaskGroupAssignmentRowDeleting(this, new TaskGroupAssignmentRowChangeEvent(((TaskGroupAssignmentRow)(e.Row)), e.Action));
+                if ((this.SubgroupRowDeleting != null)) {
+                    this.SubgroupRowDeleting(this, new SubgroupRowChangeEvent(((SubgroupRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTaskGroupAssignmentRow(TaskGroupAssignmentRow row) {
+            public void RemoveSubgroupRow(SubgroupRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1364,7 +2224,276 @@ namespace WebService {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "TaskGroupAssignmentDataTable";
+                attribute2.FixedValue = "SubgroupDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SubgroupUserDataTable : global::System.Data.TypedTableBase<SubgroupUserRow> {
+            
+            private global::System.Data.DataColumn columnSubgroupID;
+            
+            private global::System.Data.DataColumn columnGroupUserID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupUserDataTable() {
+                this.TableName = "SubgroupUser";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SubgroupUserDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected SubgroupUserDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SubgroupIDColumn {
+                get {
+                    return this.columnSubgroupID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn GroupUserIDColumn {
+                get {
+                    return this.columnGroupUserID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupUserRow this[int index] {
+                get {
+                    return ((SubgroupUserRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SubgroupUserRowChangeEventHandler SubgroupUserRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SubgroupUserRowChangeEventHandler SubgroupUserRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SubgroupUserRowChangeEventHandler SubgroupUserRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SubgroupUserRowChangeEventHandler SubgroupUserRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddSubgroupUserRow(SubgroupUserRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupUserRow AddSubgroupUserRow(SubgroupRow parentSubgroupRowByFK_SubgroupUser_Subgroup, GroupUserRow parentGroupUserRowByFK_SubgroupUser_GroupUser) {
+                SubgroupUserRow rowSubgroupUserRow = ((SubgroupUserRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null};
+                if ((parentSubgroupRowByFK_SubgroupUser_Subgroup != null)) {
+                    columnValuesArray[0] = parentSubgroupRowByFK_SubgroupUser_Subgroup[0];
+                }
+                if ((parentGroupUserRowByFK_SubgroupUser_GroupUser != null)) {
+                    columnValuesArray[1] = parentGroupUserRowByFK_SubgroupUser_GroupUser[0];
+                }
+                rowSubgroupUserRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSubgroupUserRow);
+                return rowSubgroupUserRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SubgroupUserDataTable cln = ((SubgroupUserDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SubgroupUserDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnSubgroupID = base.Columns["SubgroupID"];
+                this.columnGroupUserID = base.Columns["GroupUserID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnSubgroupID = new global::System.Data.DataColumn("SubgroupID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSubgroupID);
+                this.columnGroupUserID = new global::System.Data.DataColumn("GroupUserID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroupUserID);
+                this.columnSubgroupID.AllowDBNull = false;
+                this.columnGroupUserID.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupUserRow NewSubgroupUserRow() {
+                return ((SubgroupUserRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SubgroupUserRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SubgroupUserRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SubgroupUserRowChanged != null)) {
+                    this.SubgroupUserRowChanged(this, new SubgroupUserRowChangeEvent(((SubgroupUserRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SubgroupUserRowChanging != null)) {
+                    this.SubgroupUserRowChanging(this, new SubgroupUserRowChangeEvent(((SubgroupUserRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SubgroupUserRowDeleted != null)) {
+                    this.SubgroupUserRowDeleted(this, new SubgroupUserRowChangeEvent(((SubgroupUserRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SubgroupUserRowDeleting != null)) {
+                    this.SubgroupUserRowDeleting(this, new SubgroupUserRowChangeEvent(((SubgroupUserRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveSubgroupUserRow(SubgroupUserRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ChortleDBDataSet ds = new ChortleDBDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SubgroupUserDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1412,17 +2541,19 @@ namespace WebService {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class TaskLogDataTable : global::System.Data.TypedTableBase<TaskLogRow> {
             
-            private global::System.Data.DataColumn columnUserID;
-            
             private global::System.Data.DataColumn columnTaskTemplateID;
             
-            private global::System.Data.DataColumn columnStatus;
+            private global::System.Data.DataColumn columnUserID;
+            
+            private global::System.Data.DataColumn columnAssigned;
             
             private global::System.Data.DataColumn columnDeadline;
             
-            private global::System.Data.DataColumn columnEntryDate;
+            private global::System.Data.DataColumn columnStatusChanged;
             
             private global::System.Data.DataColumn columnComment;
+            
+            private global::System.Data.DataColumn columnStatus;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1459,14 +2590,6 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn UserIDColumn {
-                get {
-                    return this.columnUserID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn TaskTemplateIDColumn {
                 get {
                     return this.columnTaskTemplateID;
@@ -1475,9 +2598,17 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn StatusColumn {
+            public global::System.Data.DataColumn UserIDColumn {
                 get {
-                    return this.columnStatus;
+                    return this.columnUserID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AssignedColumn {
+                get {
+                    return this.columnAssigned;
                 }
             }
             
@@ -1491,9 +2622,9 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EntryDateColumn {
+            public global::System.Data.DataColumn StatusChangedColumn {
                 get {
-                    return this.columnEntryDate;
+                    return this.columnStatusChanged;
                 }
             }
             
@@ -1502,6 +2633,14 @@ namespace WebService {
             public global::System.Data.DataColumn CommentColumn {
                 get {
                     return this.columnComment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn StatusColumn {
+                get {
+                    return this.columnStatus;
                 }
             }
             
@@ -1542,20 +2681,24 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskLogRow AddTaskLogRow(UserRow parentUserRowByFK_TaskLog_User, TaskTemplateRow parentTaskTemplateRowByFK_TaskLog_TaskTemplate, byte Status, System.DateTime Deadline, System.DateTime EntryDate, string Comment) {
+            public TaskLogRow AddTaskLogRow(TaskTemplateRow parentTaskTemplateRowByFK_TaskLog_TaskTemplate, UserRow parentUserRowByFK_TaskLog_User, System.DateTime Assigned, System.DateTime Deadline, System.DateTime StatusChanged, string Comment, TaskStatusRow parentTaskStatusRowByFK_TaskLog_TaskStatus) {
                 TaskLogRow rowTaskLogRow = ((TaskLogRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
-                        Status,
+                        Assigned,
                         Deadline,
-                        EntryDate,
-                        Comment};
-                if ((parentUserRowByFK_TaskLog_User != null)) {
-                    columnValuesArray[0] = parentUserRowByFK_TaskLog_User[0];
-                }
+                        StatusChanged,
+                        Comment,
+                        null};
                 if ((parentTaskTemplateRowByFK_TaskLog_TaskTemplate != null)) {
-                    columnValuesArray[1] = parentTaskTemplateRowByFK_TaskLog_TaskTemplate[0];
+                    columnValuesArray[0] = parentTaskTemplateRowByFK_TaskLog_TaskTemplate[0];
+                }
+                if ((parentUserRowByFK_TaskLog_User != null)) {
+                    columnValuesArray[1] = parentUserRowByFK_TaskLog_User[0];
+                }
+                if ((parentTaskStatusRowByFK_TaskLog_TaskStatus != null)) {
+                    columnValuesArray[6] = parentTaskStatusRowByFK_TaskLog_TaskStatus[0];
                 }
                 rowTaskLogRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTaskLogRow);
@@ -1579,35 +2722,37 @@ namespace WebService {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnUserID = base.Columns["UserID"];
                 this.columnTaskTemplateID = base.Columns["TaskTemplateID"];
-                this.columnStatus = base.Columns["Status"];
+                this.columnUserID = base.Columns["UserID"];
+                this.columnAssigned = base.Columns["Assigned"];
                 this.columnDeadline = base.Columns["Deadline"];
-                this.columnEntryDate = base.Columns["EntryDate"];
+                this.columnStatusChanged = base.Columns["StatusChanged"];
                 this.columnComment = base.Columns["Comment"];
+                this.columnStatus = base.Columns["Status"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUserID);
                 this.columnTaskTemplateID = new global::System.Data.DataColumn("TaskTemplateID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTaskTemplateID);
-                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus);
+                this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserID);
+                this.columnAssigned = new global::System.Data.DataColumn("Assigned", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAssigned);
                 this.columnDeadline = new global::System.Data.DataColumn("Deadline", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDeadline);
-                this.columnEntryDate = new global::System.Data.DataColumn("EntryDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEntryDate);
+                this.columnStatusChanged = new global::System.Data.DataColumn("StatusChanged", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatusChanged);
                 this.columnComment = new global::System.Data.DataColumn("Comment", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnComment);
-                this.columnUserID.AllowDBNull = false;
+                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatus);
                 this.columnTaskTemplateID.AllowDBNull = false;
-                this.columnStatus.AllowDBNull = false;
+                this.columnAssigned.AllowDBNull = false;
                 this.columnDeadline.AllowDBNull = false;
-                this.columnEntryDate.AllowDBNull = false;
                 this.columnComment.MaxLength = 2147483647;
+                this.columnStatus.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1694,6 +2839,564 @@ namespace WebService {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "TaskLogDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TaskStatusDataTable : global::System.Data.TypedTableBase<TaskStatusRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnStatus;
+            
+            private global::System.Data.DataColumn columnDescription;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskStatusDataTable() {
+                this.TableName = "TaskStatus";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal TaskStatusDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected TaskStatusDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn StatusColumn {
+                get {
+                    return this.columnStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescriptionColumn {
+                get {
+                    return this.columnDescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskStatusRow this[int index] {
+                get {
+                    return ((TaskStatusRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TaskStatusRowChangeEventHandler TaskStatusRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TaskStatusRowChangeEventHandler TaskStatusRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TaskStatusRowChangeEventHandler TaskStatusRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TaskStatusRowChangeEventHandler TaskStatusRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddTaskStatusRow(TaskStatusRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskStatusRow AddTaskStatusRow(byte ID, string Status, string Description) {
+                TaskStatusRow rowTaskStatusRow = ((TaskStatusRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ID,
+                        Status,
+                        Description};
+                rowTaskStatusRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTaskStatusRow);
+                return rowTaskStatusRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskStatusRow FindByID(byte ID) {
+                return ((TaskStatusRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TaskStatusDataTable cln = ((TaskStatusDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TaskStatusDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnStatus = base.Columns["Status"];
+                this.columnDescription = base.Columns["Description"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatus);
+                this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescription);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
+                this.columnStatus.AllowDBNull = false;
+                this.columnStatus.MaxLength = 50;
+                this.columnDescription.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskStatusRow NewTaskStatusRow() {
+                return ((TaskStatusRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TaskStatusRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TaskStatusRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TaskStatusRowChanged != null)) {
+                    this.TaskStatusRowChanged(this, new TaskStatusRowChangeEvent(((TaskStatusRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TaskStatusRowChanging != null)) {
+                    this.TaskStatusRowChanging(this, new TaskStatusRowChangeEvent(((TaskStatusRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TaskStatusRowDeleted != null)) {
+                    this.TaskStatusRowDeleted(this, new TaskStatusRowChangeEvent(((TaskStatusRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TaskStatusRowDeleting != null)) {
+                    this.TaskStatusRowDeleting(this, new TaskStatusRowChangeEvent(((TaskStatusRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveTaskStatusRow(TaskStatusRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ChortleDBDataSet ds = new ChortleDBDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TaskStatusDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TaskSubGroupAssignmentDataTable : global::System.Data.TypedTableBase<TaskSubGroupAssignmentRow> {
+            
+            private global::System.Data.DataColumn columnSubGroupID;
+            
+            private global::System.Data.DataColumn columnTaskTemplateID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskSubGroupAssignmentDataTable() {
+                this.TableName = "TaskSubGroupAssignment";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal TaskSubGroupAssignmentDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected TaskSubGroupAssignmentDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SubGroupIDColumn {
+                get {
+                    return this.columnSubGroupID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TaskTemplateIDColumn {
+                get {
+                    return this.columnTaskTemplateID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskSubGroupAssignmentRow this[int index] {
+                get {
+                    return ((TaskSubGroupAssignmentRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TaskSubGroupAssignmentRowChangeEventHandler TaskSubGroupAssignmentRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TaskSubGroupAssignmentRowChangeEventHandler TaskSubGroupAssignmentRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TaskSubGroupAssignmentRowChangeEventHandler TaskSubGroupAssignmentRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event TaskSubGroupAssignmentRowChangeEventHandler TaskSubGroupAssignmentRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddTaskSubGroupAssignmentRow(TaskSubGroupAssignmentRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskSubGroupAssignmentRow AddTaskSubGroupAssignmentRow(SubgroupRow parentSubgroupRowByFK_TaskSubGroupAssignment_SubGroup, TaskTemplateRow parentTaskTemplateRowByFK_TaskSubGroupAssignment_TaskTemplate) {
+                TaskSubGroupAssignmentRow rowTaskSubGroupAssignmentRow = ((TaskSubGroupAssignmentRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null};
+                if ((parentSubgroupRowByFK_TaskSubGroupAssignment_SubGroup != null)) {
+                    columnValuesArray[0] = parentSubgroupRowByFK_TaskSubGroupAssignment_SubGroup[0];
+                }
+                if ((parentTaskTemplateRowByFK_TaskSubGroupAssignment_TaskTemplate != null)) {
+                    columnValuesArray[1] = parentTaskTemplateRowByFK_TaskSubGroupAssignment_TaskTemplate[0];
+                }
+                rowTaskSubGroupAssignmentRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTaskSubGroupAssignmentRow);
+                return rowTaskSubGroupAssignmentRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TaskSubGroupAssignmentDataTable cln = ((TaskSubGroupAssignmentDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TaskSubGroupAssignmentDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnSubGroupID = base.Columns["SubGroupID"];
+                this.columnTaskTemplateID = base.Columns["TaskTemplateID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnSubGroupID = new global::System.Data.DataColumn("SubGroupID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSubGroupID);
+                this.columnTaskTemplateID = new global::System.Data.DataColumn("TaskTemplateID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTaskTemplateID);
+                this.columnSubGroupID.AllowDBNull = false;
+                this.columnTaskTemplateID.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskSubGroupAssignmentRow NewTaskSubGroupAssignmentRow() {
+                return ((TaskSubGroupAssignmentRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TaskSubGroupAssignmentRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TaskSubGroupAssignmentRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TaskSubGroupAssignmentRowChanged != null)) {
+                    this.TaskSubGroupAssignmentRowChanged(this, new TaskSubGroupAssignmentRowChangeEvent(((TaskSubGroupAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TaskSubGroupAssignmentRowChanging != null)) {
+                    this.TaskSubGroupAssignmentRowChanging(this, new TaskSubGroupAssignmentRowChangeEvent(((TaskSubGroupAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TaskSubGroupAssignmentRowDeleted != null)) {
+                    this.TaskSubGroupAssignmentRowDeleted(this, new TaskSubGroupAssignmentRowChangeEvent(((TaskSubGroupAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TaskSubGroupAssignmentRowDeleting != null)) {
+                    this.TaskSubGroupAssignmentRowDeleting(this, new TaskSubGroupAssignmentRowChangeEvent(((TaskSubGroupAssignmentRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveTaskSubGroupAssignmentRow(TaskSubGroupAssignmentRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ChortleDBDataSet ds = new ChortleDBDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TaskSubGroupAssignmentDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2753,6 +4456,275 @@ namespace WebService {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class UserFriendDataTable : global::System.Data.TypedTableBase<UserFriendRow> {
+            
+            private global::System.Data.DataColumn columnUserID;
+            
+            private global::System.Data.DataColumn columnFriendID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserFriendDataTable() {
+                this.TableName = "UserFriend";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal UserFriendDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected UserFriendDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UserIDColumn {
+                get {
+                    return this.columnUserID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FriendIDColumn {
+                get {
+                    return this.columnFriendID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserFriendRow this[int index] {
+                get {
+                    return ((UserFriendRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UserFriendRowChangeEventHandler UserFriendRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UserFriendRowChangeEventHandler UserFriendRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UserFriendRowChangeEventHandler UserFriendRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UserFriendRowChangeEventHandler UserFriendRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddUserFriendRow(UserFriendRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserFriendRow AddUserFriendRow(UserRow parentUserRowByFK_UserFriend_User, UserRow parentUserRowByFK_UserFriend_User1) {
+                UserFriendRow rowUserFriendRow = ((UserFriendRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null};
+                if ((parentUserRowByFK_UserFriend_User != null)) {
+                    columnValuesArray[0] = parentUserRowByFK_UserFriend_User[0];
+                }
+                if ((parentUserRowByFK_UserFriend_User1 != null)) {
+                    columnValuesArray[1] = parentUserRowByFK_UserFriend_User1[0];
+                }
+                rowUserFriendRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowUserFriendRow);
+                return rowUserFriendRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                UserFriendDataTable cln = ((UserFriendDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new UserFriendDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnUserID = base.Columns["UserID"];
+                this.columnFriendID = base.Columns["FriendID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserID);
+                this.columnFriendID = new global::System.Data.DataColumn("FriendID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFriendID);
+                this.columnUserID.AllowDBNull = false;
+                this.columnFriendID.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserFriendRow NewUserFriendRow() {
+                return ((UserFriendRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new UserFriendRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(UserFriendRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.UserFriendRowChanged != null)) {
+                    this.UserFriendRowChanged(this, new UserFriendRowChangeEvent(((UserFriendRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.UserFriendRowChanging != null)) {
+                    this.UserFriendRowChanging(this, new UserFriendRowChangeEvent(((UserFriendRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.UserFriendRowDeleted != null)) {
+                    this.UserFriendRowDeleted(this, new UserFriendRowChangeEvent(((UserFriendRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.UserFriendRowDeleting != null)) {
+                    this.UserFriendRowDeleting(this, new UserFriendRowChangeEvent(((UserFriendRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveUserFriendRow(UserFriendRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ChortleDBDataSet ds = new ChortleDBDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "UserFriendDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class GroupRow : global::System.Data.DataRow {
@@ -2790,22 +4762,6 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ParentGroupID {
-                get {
-                    try {
-                        return ((int)(this[this.tableGroup.ParentGroupIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ParentGroupID\' in table \'Group\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGroup.ParentGroupIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Description {
                 get {
                     try {
@@ -2818,18 +4774,6 @@ namespace WebService {
                 set {
                     this[this.tableGroup.DescriptionColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsParentGroupIDNull() {
-                return this.IsNull(this.tableGroup.ParentGroupIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetParentGroupIDNull() {
-                this[this.tableGroup.ParentGroupIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2857,12 +4801,12 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskGroupAssignmentRow[] GetTaskGroupAssignmentRows() {
-                if ((this.Table.ChildRelations["FK_TaskGroupAssignment_Group"] == null)) {
-                    return new TaskGroupAssignmentRow[0];
+            public SubgroupRow[] GetSubgroupRows() {
+                if ((this.Table.ChildRelations["FK_SubGroup_Group"] == null)) {
+                    return new SubgroupRow[0];
                 }
                 else {
-                    return ((TaskGroupAssignmentRow[])(base.GetChildRows(this.Table.ChildRelations["FK_TaskGroupAssignment_Group"])));
+                    return ((SubgroupRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SubGroup_Group"])));
                 }
             }
             
@@ -2881,6 +4825,113 @@ namespace WebService {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class GroupAdminRow : global::System.Data.DataRow {
+            
+            private GroupAdminDataTable tableGroupAdmin;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal GroupAdminRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableGroupAdmin = ((GroupAdminDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int GroupID {
+                get {
+                    return ((int)(this[this.tableGroupAdmin.GroupIDColumn]));
+                }
+                set {
+                    this[this.tableGroupAdmin.GroupIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int AdminID {
+                get {
+                    return ((int)(this[this.tableGroupAdmin.AdminIDColumn]));
+                }
+                set {
+                    this[this.tableGroupAdmin.AdminIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupUserRow GroupUserRowParent {
+                get {
+                    return ((GroupUserRow)(this.GetParentRow(this.Table.ParentRelations["FK_GroupAdmin_GroupUser"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_GroupAdmin_GroupUser"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupOwnerRow[] GetGroupOwnerRows() {
+                if ((this.Table.ChildRelations["FK_GroupOwner_GroupAdmin"] == null)) {
+                    return new GroupOwnerRow[0];
+                }
+                else {
+                    return ((GroupOwnerRow[])(base.GetChildRows(this.Table.ChildRelations["FK_GroupOwner_GroupAdmin"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class GroupOwnerRow : global::System.Data.DataRow {
+            
+            private GroupOwnerDataTable tableGroupOwner;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal GroupOwnerRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableGroupOwner = ((GroupOwnerDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int GroupID {
+                get {
+                    return ((int)(this[this.tableGroupOwner.GroupIDColumn]));
+                }
+                set {
+                    this[this.tableGroupOwner.GroupIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int OwnerID {
+                get {
+                    return ((int)(this[this.tableGroupOwner.OwnerIDColumn]));
+                }
+                set {
+                    this[this.tableGroupOwner.OwnerIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupAdminRow GroupAdminRowParent {
+                get {
+                    return ((GroupAdminRow)(this.GetParentRow(this.Table.ParentRelations["FK_GroupOwner_GroupAdmin"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_GroupOwner_GroupAdmin"]);
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class GroupUserRow : global::System.Data.DataRow {
             
             private GroupUserDataTable tableGroupUser;
@@ -2890,6 +4941,17 @@ namespace WebService {
             internal GroupUserRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableGroupUser = ((GroupUserDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tableGroupUser.IDColumn]));
+                }
+                set {
+                    this[this.tableGroupUser.IDColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2916,17 +4978,6 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte Status {
-                get {
-                    return ((byte)(this[this.tableGroupUser.StatusColumn]));
-                }
-                set {
-                    this[this.tableGroupUser.StatusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GroupRow GroupRow {
                 get {
                     return ((GroupRow)(this.GetParentRow(this.Table.ParentRelations["FK_GroupUser_Group"])));
@@ -2946,41 +4997,90 @@ namespace WebService {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_GroupUser_User"]);
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupAdminRow[] GetGroupAdminRows() {
+                if ((this.Table.ChildRelations["FK_GroupAdmin_GroupUser"] == null)) {
+                    return new GroupAdminRow[0];
+                }
+                else {
+                    return ((GroupAdminRow[])(base.GetChildRows(this.Table.ChildRelations["FK_GroupAdmin_GroupUser"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupUserRow[] GetSubgroupUserRows() {
+                if ((this.Table.ChildRelations["FK_SubgroupUser_GroupUser"] == null)) {
+                    return new SubgroupUserRow[0];
+                }
+                else {
+                    return ((SubgroupUserRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SubgroupUser_GroupUser"])));
+                }
+            }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class TaskGroupAssignmentRow : global::System.Data.DataRow {
+        public partial class SubgroupRow : global::System.Data.DataRow {
             
-            private TaskGroupAssignmentDataTable tableTaskGroupAssignment;
+            private SubgroupDataTable tableSubgroup;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TaskGroupAssignmentRow(global::System.Data.DataRowBuilder rb) : 
+            internal SubgroupRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTaskGroupAssignment = ((TaskGroupAssignmentDataTable)(this.Table));
+                this.tableSubgroup = ((SubgroupDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int GroupID {
+            public int ID {
                 get {
-                    return ((int)(this[this.tableTaskGroupAssignment.GroupIDColumn]));
+                    return ((int)(this[this.tableSubgroup.IDColumn]));
                 }
                 set {
-                    this[this.tableTaskGroupAssignment.GroupIDColumn] = value;
+                    this[this.tableSubgroup.IDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int TaskTemplateID {
+            public int ParentGroupID {
                 get {
-                    return ((int)(this[this.tableTaskGroupAssignment.TaskTemplateIDColumn]));
+                    return ((int)(this[this.tableSubgroup.ParentGroupIDColumn]));
                 }
                 set {
-                    this[this.tableTaskGroupAssignment.TaskTemplateIDColumn] = value;
+                    this[this.tableSubgroup.ParentGroupIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Name {
+                get {
+                    return ((string)(this[this.tableSubgroup.NameColumn]));
+                }
+                set {
+                    this[this.tableSubgroup.NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Description {
+                get {
+                    try {
+                        return ((string)(this[this.tableSubgroup.DescriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Description\' in table \'Subgroup\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSubgroup.DescriptionColumn] = value;
                 }
             }
             
@@ -2988,21 +5088,103 @@ namespace WebService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GroupRow GroupRow {
                 get {
-                    return ((GroupRow)(this.GetParentRow(this.Table.ParentRelations["FK_TaskGroupAssignment_Group"])));
+                    return ((GroupRow)(this.GetParentRow(this.Table.ParentRelations["FK_SubGroup_Group"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_TaskGroupAssignment_Group"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SubGroup_Group"]);
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskTemplateRow TaskTemplateRow {
+            public bool IsDescriptionNull() {
+                return this.IsNull(this.tableSubgroup.DescriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescriptionNull() {
+                this[this.tableSubgroup.DescriptionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupUserRow[] GetSubgroupUserRows() {
+                if ((this.Table.ChildRelations["FK_SubgroupUser_Subgroup"] == null)) {
+                    return new SubgroupUserRow[0];
+                }
+                else {
+                    return ((SubgroupUserRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SubgroupUser_Subgroup"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskSubGroupAssignmentRow[] GetTaskSubGroupAssignmentRows() {
+                if ((this.Table.ChildRelations["FK_TaskSubGroupAssignment_SubGroup"] == null)) {
+                    return new TaskSubGroupAssignmentRow[0];
+                }
+                else {
+                    return ((TaskSubGroupAssignmentRow[])(base.GetChildRows(this.Table.ChildRelations["FK_TaskSubGroupAssignment_SubGroup"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SubgroupUserRow : global::System.Data.DataRow {
+            
+            private SubgroupUserDataTable tableSubgroupUser;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SubgroupUserRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSubgroupUser = ((SubgroupUserDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SubgroupID {
                 get {
-                    return ((TaskTemplateRow)(this.GetParentRow(this.Table.ParentRelations["FK_TaskGroupAssignment_TaskTemplate"])));
+                    return ((int)(this[this.tableSubgroupUser.SubgroupIDColumn]));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_TaskGroupAssignment_TaskTemplate"]);
+                    this[this.tableSubgroupUser.SubgroupIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int GroupUserID {
+                get {
+                    return ((int)(this[this.tableSubgroupUser.GroupUserIDColumn]));
+                }
+                set {
+                    this[this.tableSubgroupUser.GroupUserIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupUserRow GroupUserRow {
+                get {
+                    return ((GroupUserRow)(this.GetParentRow(this.Table.ParentRelations["FK_SubgroupUser_GroupUser"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SubgroupUser_GroupUser"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupRow SubgroupRow {
+                get {
+                    return ((SubgroupRow)(this.GetParentRow(this.Table.ParentRelations["FK_SubgroupUser_Subgroup"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SubgroupUser_Subgroup"]);
                 }
             }
         }
@@ -3023,17 +5205,6 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int UserID {
-                get {
-                    return ((int)(this[this.tableTaskLog.UserIDColumn]));
-                }
-                set {
-                    this[this.tableTaskLog.UserIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int TaskTemplateID {
                 get {
                     return ((int)(this[this.tableTaskLog.TaskTemplateIDColumn]));
@@ -3045,12 +5216,28 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte Status {
+            public int UserID {
                 get {
-                    return ((byte)(this[this.tableTaskLog.StatusColumn]));
+                    try {
+                        return ((int)(this[this.tableTaskLog.UserIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UserID\' in table \'TaskLog\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableTaskLog.StatusColumn] = value;
+                    this[this.tableTaskLog.UserIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime Assigned {
+                get {
+                    return ((global::System.DateTime)(this[this.tableTaskLog.AssignedColumn]));
+                }
+                set {
+                    this[this.tableTaskLog.AssignedColumn] = value;
                 }
             }
             
@@ -3067,12 +5254,17 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime EntryDate {
+            public System.DateTime StatusChanged {
                 get {
-                    return ((global::System.DateTime)(this[this.tableTaskLog.EntryDateColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tableTaskLog.StatusChangedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StatusChanged\' in table \'TaskLog\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableTaskLog.EntryDateColumn] = value;
+                    this[this.tableTaskLog.StatusChangedColumn] = value;
                 }
             }
             
@@ -3089,6 +5281,28 @@ namespace WebService {
                 }
                 set {
                     this[this.tableTaskLog.CommentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte Status {
+                get {
+                    return ((byte)(this[this.tableTaskLog.StatusColumn]));
+                }
+                set {
+                    this[this.tableTaskLog.StatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskStatusRow TaskStatusRow {
+                get {
+                    return ((TaskStatusRow)(this.GetParentRow(this.Table.ParentRelations["FK_TaskLog_TaskStatus"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_TaskLog_TaskStatus"]);
                 }
             }
             
@@ -3116,6 +5330,30 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUserIDNull() {
+                return this.IsNull(this.tableTaskLog.UserIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUserIDNull() {
+                this[this.tableTaskLog.UserIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsStatusChangedNull() {
+                return this.IsNull(this.tableTaskLog.StatusChangedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetStatusChangedNull() {
+                this[this.tableTaskLog.StatusChangedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCommentNull() {
                 return this.IsNull(this.tableTaskLog.CommentColumn);
             }
@@ -3124,6 +5362,141 @@ namespace WebService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCommentNull() {
                 this[this.tableTaskLog.CommentColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class TaskStatusRow : global::System.Data.DataRow {
+            
+            private TaskStatusDataTable tableTaskStatus;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal TaskStatusRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTaskStatus = ((TaskStatusDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte ID {
+                get {
+                    return ((byte)(this[this.tableTaskStatus.IDColumn]));
+                }
+                set {
+                    this[this.tableTaskStatus.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Status {
+                get {
+                    return ((string)(this[this.tableTaskStatus.StatusColumn]));
+                }
+                set {
+                    this[this.tableTaskStatus.StatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Description {
+                get {
+                    try {
+                        return ((string)(this[this.tableTaskStatus.DescriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Description\' in table \'TaskStatus\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTaskStatus.DescriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescriptionNull() {
+                return this.IsNull(this.tableTaskStatus.DescriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescriptionNull() {
+                this[this.tableTaskStatus.DescriptionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskLogRow[] GetTaskLogRows() {
+                if ((this.Table.ChildRelations["FK_TaskLog_TaskStatus"] == null)) {
+                    return new TaskLogRow[0];
+                }
+                else {
+                    return ((TaskLogRow[])(base.GetChildRows(this.Table.ChildRelations["FK_TaskLog_TaskStatus"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class TaskSubGroupAssignmentRow : global::System.Data.DataRow {
+            
+            private TaskSubGroupAssignmentDataTable tableTaskSubGroupAssignment;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal TaskSubGroupAssignmentRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTaskSubGroupAssignment = ((TaskSubGroupAssignmentDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SubGroupID {
+                get {
+                    return ((int)(this[this.tableTaskSubGroupAssignment.SubGroupIDColumn]));
+                }
+                set {
+                    this[this.tableTaskSubGroupAssignment.SubGroupIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int TaskTemplateID {
+                get {
+                    return ((int)(this[this.tableTaskSubGroupAssignment.TaskTemplateIDColumn]));
+                }
+                set {
+                    this[this.tableTaskSubGroupAssignment.TaskTemplateIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupRow SubgroupRow {
+                get {
+                    return ((SubgroupRow)(this.GetParentRow(this.Table.ParentRelations["FK_TaskSubGroupAssignment_SubGroup"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_TaskSubGroupAssignment_SubGroup"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskTemplateRow TaskTemplateRow {
+                get {
+                    return ((TaskTemplateRow)(this.GetParentRow(this.Table.ParentRelations["FK_TaskSubGroupAssignment_TaskTemplate"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_TaskSubGroupAssignment_TaskTemplate"]);
+                }
             }
         }
         
@@ -3411,23 +5784,23 @@ namespace WebService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskGroupAssignmentRow[] GetTaskGroupAssignmentRows() {
-                if ((this.Table.ChildRelations["FK_TaskGroupAssignment_TaskTemplate"] == null)) {
-                    return new TaskGroupAssignmentRow[0];
-                }
-                else {
-                    return ((TaskGroupAssignmentRow[])(base.GetChildRows(this.Table.ChildRelations["FK_TaskGroupAssignment_TaskTemplate"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TaskLogRow[] GetTaskLogRows() {
                 if ((this.Table.ChildRelations["FK_TaskLog_TaskTemplate"] == null)) {
                     return new TaskLogRow[0];
                 }
                 else {
                     return ((TaskLogRow[])(base.GetChildRows(this.Table.ChildRelations["FK_TaskLog_TaskTemplate"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskSubGroupAssignmentRow[] GetTaskSubGroupAssignmentRows() {
+                if ((this.Table.ChildRelations["FK_TaskSubGroupAssignment_TaskTemplate"] == null)) {
+                    return new TaskSubGroupAssignmentRow[0];
+                }
+                else {
+                    return ((TaskSubGroupAssignmentRow[])(base.GetChildRows(this.Table.ChildRelations["FK_TaskSubGroupAssignment_TaskTemplate"])));
                 }
             }
             
@@ -3648,6 +6021,87 @@ namespace WebService {
                     return ((TaskUserAssignmentRow[])(base.GetChildRows(this.Table.ChildRelations["FK_TaskUserAssignment_User"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserFriendRow[] GetUserFriendRowsByFK_UserFriend_User() {
+                if ((this.Table.ChildRelations["FK_UserFriend_User"] == null)) {
+                    return new UserFriendRow[0];
+                }
+                else {
+                    return ((UserFriendRow[])(base.GetChildRows(this.Table.ChildRelations["FK_UserFriend_User"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserFriendRow[] GetUserFriendRowsByFK_UserFriend_User1() {
+                if ((this.Table.ChildRelations["FK_UserFriend_User1"] == null)) {
+                    return new UserFriendRow[0];
+                }
+                else {
+                    return ((UserFriendRow[])(base.GetChildRows(this.Table.ChildRelations["FK_UserFriend_User1"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class UserFriendRow : global::System.Data.DataRow {
+            
+            private UserFriendDataTable tableUserFriend;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal UserFriendRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableUserFriend = ((UserFriendDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int UserID {
+                get {
+                    return ((int)(this[this.tableUserFriend.UserIDColumn]));
+                }
+                set {
+                    this[this.tableUserFriend.UserIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int FriendID {
+                get {
+                    return ((int)(this[this.tableUserFriend.FriendIDColumn]));
+                }
+                set {
+                    this[this.tableUserFriend.FriendIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserRow UserRowByFK_UserFriend_User {
+                get {
+                    return ((UserRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserFriend_User"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_UserFriend_User"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserRow UserRowByFK_UserFriend_User1 {
+                get {
+                    return ((UserRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserFriend_User1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_UserFriend_User1"]);
+                }
+            }
         }
         
         /// <summary>
@@ -3670,6 +6124,74 @@ namespace WebService {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GroupRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class GroupAdminRowChangeEvent : global::System.EventArgs {
+            
+            private GroupAdminRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupAdminRowChangeEvent(GroupAdminRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupAdminRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class GroupOwnerRowChangeEvent : global::System.EventArgs {
+            
+            private GroupOwnerRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupOwnerRowChangeEvent(GroupOwnerRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroupOwnerRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3722,22 +6244,56 @@ namespace WebService {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class TaskGroupAssignmentRowChangeEvent : global::System.EventArgs {
+        public class SubgroupRowChangeEvent : global::System.EventArgs {
             
-            private TaskGroupAssignmentRow eventRow;
+            private SubgroupRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskGroupAssignmentRowChangeEvent(TaskGroupAssignmentRow row, global::System.Data.DataRowAction action) {
+            public SubgroupRowChangeEvent(SubgroupRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TaskGroupAssignmentRow Row {
+            public SubgroupRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class SubgroupUserRowChangeEvent : global::System.EventArgs {
+            
+            private SubgroupUserRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupUserRowChangeEvent(SubgroupUserRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SubgroupUserRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3772,6 +6328,74 @@ namespace WebService {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TaskLogRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class TaskStatusRowChangeEvent : global::System.EventArgs {
+            
+            private TaskStatusRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskStatusRowChangeEvent(TaskStatusRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskStatusRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class TaskSubGroupAssignmentRowChangeEvent : global::System.EventArgs {
+            
+            private TaskSubGroupAssignmentRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskSubGroupAssignmentRowChangeEvent(TaskSubGroupAssignmentRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TaskSubGroupAssignmentRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3874,6 +6498,40 @@ namespace WebService {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public UserRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class UserFriendRowChangeEvent : global::System.EventArgs {
+            
+            private UserFriendRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserFriendRowChangeEvent(UserFriendRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UserFriendRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4015,40 +6673,33 @@ namespace WebService.ChortleDBDataSetTableAdapters {
             tableMapping.DataSetTable = "Group";
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("GroupName", "GroupName");
-            tableMapping.ColumnMappings.Add("ParentGroupID", "ParentGroupID");
             tableMapping.ColumnMappings.Add("Description", "Description");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Group] WHERE (([ID] = @Original_ID) AND ([GroupName] = @Origin" +
-                "al_GroupName) AND ((@IsNull_ParentGroupID = 1 AND [ParentGroupID] IS NULL) OR ([" +
-                "ParentGroupID] = @Original_ParentGroupID)))";
+                "al_GroupName))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GroupName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Group] ([GroupName], [ParentGroupID], [Description]) VALUES (@" +
-                "GroupName, @ParentGroupID, @Description);\r\nSELECT ID, GroupName, ParentGroupID, " +
-                "Description FROM dbo.[Group] WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Group] ([GroupName], [Description]) VALUES (@GroupName, @Descr" +
+                "iption);\r\nSELECT ID, GroupName, Description FROM dbo.[Group] WHERE (ID = SCOPE_I" +
+                "DENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GroupName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Group] SET [GroupName] = @GroupName, [ParentGroupID] = @ParentGroupID, [Description] = @Description WHERE (([ID] = @Original_ID) AND ([GroupName] = @Original_GroupName) AND ((@IsNull_ParentGroupID = 1 AND [ParentGroupID] IS NULL) OR ([ParentGroupID] = @Original_ParentGroupID)));
-SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Group] SET [GroupName] = @GroupName, [Description] = @Description W" +
+                "HERE (([ID] = @Original_ID) AND ([GroupName] = @Original_GroupName));\r\nSELECT ID" +
+                ", GroupName, Description FROM dbo.[Group] WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GroupName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GroupName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -4065,7 +6716,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group]";
+            this._commandCollection[0].CommandText = "SELECT ID, GroupName, Description FROM dbo.[Group]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4126,21 +6777,13 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_GroupName, global::System.Nullable<int> Original_ParentGroupID) {
+        public virtual int Delete(int Original_ID, string Original_GroupName) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_GroupName == null)) {
                 throw new global::System.ArgumentNullException("Original_GroupName");
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_GroupName));
-            }
-            if ((Original_ParentGroupID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_ParentGroupID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4162,24 +6805,18 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string GroupName, global::System.Nullable<int> ParentGroupID, string Description) {
+        public virtual int Insert(string GroupName, string Description) {
             if ((GroupName == null)) {
                 throw new global::System.ArgumentNullException("GroupName");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(GroupName));
             }
-            if ((ParentGroupID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(ParentGroupID.Value));
-            }
-            else {
+            if ((Description == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((Description == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Description));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Description));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4201,41 +6838,27 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string GroupName, global::System.Nullable<int> ParentGroupID, string Description, int Original_ID, string Original_GroupName, global::System.Nullable<int> Original_ParentGroupID, int ID) {
+        public virtual int Update(string GroupName, string Description, int Original_ID, string Original_GroupName, int ID) {
             if ((GroupName == null)) {
                 throw new global::System.ArgumentNullException("GroupName");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(GroupName));
             }
-            if ((ParentGroupID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(ParentGroupID.Value));
-            }
-            else {
+            if ((Description == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((Description == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Description));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Description));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_ID));
             if ((Original_GroupName == null)) {
                 throw new global::System.ArgumentNullException("Original_GroupName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_GroupName));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_GroupName));
             }
-            if ((Original_ParentGroupID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ParentGroupID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4256,8 +6879,462 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string GroupName, global::System.Nullable<int> ParentGroupID, string Description, int Original_ID, string Original_GroupName, global::System.Nullable<int> Original_ParentGroupID) {
-            return this.Update(GroupName, ParentGroupID, Description, Original_ID, Original_GroupName, Original_ParentGroupID, Original_ID);
+        public virtual int Update(string GroupName, string Description, int Original_ID, string Original_GroupName) {
+            return this.Update(GroupName, Description, Original_ID, Original_GroupName, Original_ID);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class GroupAdminTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public GroupAdminTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "GroupAdmin";
+            tableMapping.ColumnMappings.Add("GroupID", "GroupID");
+            tableMapping.ColumnMappings.Add("AdminID", "AdminID");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[GroupAdmin] ([GroupID], [AdminID]) VALUES (@GroupID, @AdminID)" +
+                "";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AdminID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdminID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT GroupID, AdminID FROM dbo.GroupAdmin";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ChortleDBDataSet.GroupAdminDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ChortleDBDataSet.GroupAdminDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ChortleDBDataSet.GroupAdminDataTable dataTable = new ChortleDBDataSet.GroupAdminDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet.GroupAdminDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "GroupAdmin");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int GroupID, int AdminID) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(GroupID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(AdminID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class GroupOwnerTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public GroupOwnerTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "GroupOwner";
+            tableMapping.ColumnMappings.Add("GroupID", "GroupID");
+            tableMapping.ColumnMappings.Add("OwnerID", "OwnerID");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[GroupOwner] ([GroupID], [OwnerID]) VALUES (@GroupID, @OwnerID)" +
+                "";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OwnerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT GroupID, OwnerID FROM dbo.GroupOwner";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ChortleDBDataSet.GroupOwnerDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ChortleDBDataSet.GroupOwnerDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ChortleDBDataSet.GroupOwnerDataTable dataTable = new ChortleDBDataSet.GroupOwnerDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet.GroupOwnerDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "GroupOwner");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int GroupID, int OwnerID) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(GroupID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(OwnerID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
         }
     }
     
@@ -4382,18 +7459,37 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "GroupUser";
+            tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("GroupID", "GroupID");
             tableMapping.ColumnMappings.Add("UserID", "UserID");
-            tableMapping.ColumnMappings.Add("Status", "Status");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[GroupUser] WHERE (([ID] = @Original_ID) AND ([GroupID] = @Orig" +
+                "inal_GroupID) AND ([UserID] = @Original_UserID))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[GroupUser] ([GroupID], [UserID], [Status]) VALUES (@GroupID, @" +
-                "UserID, @Status)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[GroupUser] ([GroupID], [UserID]) VALUES (@GroupID, @UserID);\r\n" +
+                "SELECT ID, GroupID, UserID FROM dbo.GroupUser WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[GroupUser] SET [GroupID] = @GroupID, [UserID] = @UserID WHERE (([ID" +
+                "] = @Original_ID) AND ([GroupID] = @Original_GroupID) AND ([UserID] = @Original_" +
+                "UserID));\r\nSELECT ID, GroupID, UserID FROM dbo.GroupUser WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4409,7 +7505,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT GroupID, UserID, Status FROM dbo.GroupUser";
+            this._commandCollection[0].CommandText = "SELECT ID, GroupID, UserID FROM dbo.GroupUser";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4469,11 +7565,34 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ID, int Original_GroupID, int Original_UserID) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_GroupID));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_UserID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int GroupID, int UserID, byte Status) {
+        public virtual int Insert(int GroupID, int UserID) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(GroupID));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(UserID));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(Status));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4489,6 +7608,41 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
                 }
             }
         }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int GroupID, int UserID, int Original_ID, int Original_GroupID, int Original_UserID, int ID) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(GroupID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(UserID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_GroupID));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_UserID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(ID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int GroupID, int UserID, int Original_ID, int Original_GroupID, int Original_UserID) {
+            return this.Update(GroupID, UserID, Original_ID, Original_GroupID, Original_UserID, Original_ID);
+        }
     }
     
     /// <summary>
@@ -4500,7 +7654,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class TaskGroupAssignmentTableAdapter : global::System.ComponentModel.Component {
+    public partial class SubgroupTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -4514,7 +7668,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public TaskGroupAssignmentTableAdapter() {
+        public SubgroupTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -4611,17 +7765,41 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "TaskGroupAssignment";
-            tableMapping.ColumnMappings.Add("GroupID", "GroupID");
-            tableMapping.ColumnMappings.Add("TaskTemplateID", "TaskTemplateID");
+            tableMapping.DataSetTable = "Subgroup";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("ParentGroupID", "ParentGroupID");
+            tableMapping.ColumnMappings.Add("Name", "Name");
+            tableMapping.ColumnMappings.Add("Description", "Description");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Subgroup] WHERE (([ID] = @Original_ID) AND ([ParentGroupID] = " +
+                "@Original_ParentGroupID) AND ([Name] = @Original_Name))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TaskGroupAssignment] ([GroupID], [TaskTemplateID]) VALUES (@Gr" +
-                "oupID, @TaskTemplateID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Subgroup] ([ParentGroupID], [Name], [Description]) VALUES (@Pa" +
+                "rentGroupID, @Name, @Description);\r\nSELECT ID, ParentGroupID, Name, Description " +
+                "FROM dbo.Subgroup WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TaskTemplateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TaskTemplateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Subgroup] SET [ParentGroupID] = @ParentGroupID, [Name] = @Name, [Description] = @Description WHERE (([ID] = @Original_ID) AND ([ParentGroupID] = @Original_ParentGroupID) AND ([Name] = @Original_Name));
+SELECT ID, ParentGroupID, Name, Description FROM dbo.Subgroup WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentGroupID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4637,7 +7815,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT GroupID, TaskTemplateID FROM dbo.TaskGroupAssignment";
+            this._commandCollection[0].CommandText = "SELECT ID, ParentGroupID, Name, Description FROM dbo.Subgroup";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4645,7 +7823,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(ChortleDBDataSet.TaskGroupAssignmentDataTable dataTable) {
+        public virtual int Fill(ChortleDBDataSet.SubgroupDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -4658,9 +7836,9 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ChortleDBDataSet.TaskGroupAssignmentDataTable GetData() {
+        public virtual ChortleDBDataSet.SubgroupDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            ChortleDBDataSet.TaskGroupAssignmentDataTable dataTable = new ChortleDBDataSet.TaskGroupAssignmentDataTable();
+            ChortleDBDataSet.SubgroupDataTable dataTable = new ChortleDBDataSet.SubgroupDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -4668,7 +7846,7 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ChortleDBDataSet.TaskGroupAssignmentDataTable dataTable) {
+        public virtual int Update(ChortleDBDataSet.SubgroupDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -4676,7 +7854,325 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(ChortleDBDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "TaskGroupAssignment");
+            return this.Adapter.Update(dataSet, "Subgroup");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ID, int Original_ParentGroupID, string Original_Name) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_ParentGroupID));
+            if ((Original_Name == null)) {
+                throw new global::System.ArgumentNullException("Original_Name");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Name));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int ParentGroupID, string Name, string Description) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ParentGroupID));
+            if ((Name == null)) {
+                throw new global::System.ArgumentNullException("Name");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Name));
+            }
+            if ((Description == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Description));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int ParentGroupID, string Name, string Description, int Original_ID, int Original_ParentGroupID, string Original_Name, int ID) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ParentGroupID));
+            if ((Name == null)) {
+                throw new global::System.ArgumentNullException("Name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Name));
+            }
+            if ((Description == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Description));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_ParentGroupID));
+            if ((Original_Name == null)) {
+                throw new global::System.ArgumentNullException("Original_Name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Name));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(ID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int ParentGroupID, string Name, string Description, int Original_ID, int Original_ParentGroupID, string Original_Name) {
+            return this.Update(ParentGroupID, Name, Description, Original_ID, Original_ParentGroupID, Original_Name, Original_ID);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SubgroupUserTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public SubgroupUserTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SubgroupUser";
+            tableMapping.ColumnMappings.Add("SubgroupID", "SubgroupID");
+            tableMapping.ColumnMappings.Add("GroupUserID", "GroupUserID");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[SubgroupUser] ([SubgroupID], [GroupUserID]) VALUES (@SubgroupI" +
+                "D, @GroupUserID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubgroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubgroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GroupUserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GroupUserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT SubgroupID, GroupUserID FROM dbo.SubgroupUser";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ChortleDBDataSet.SubgroupUserDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ChortleDBDataSet.SubgroupUserDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ChortleDBDataSet.SubgroupUserDataTable dataTable = new ChortleDBDataSet.SubgroupUserDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet.SubgroupUserDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "SubgroupUser");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4698,9 +8194,9 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int GroupID, int TaskTemplateID) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(GroupID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(TaskTemplateID));
+        public virtual int Insert(int SubgroupID, int GroupUserID) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SubgroupID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(GroupUserID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4839,25 +8335,27 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "TaskLog";
-            tableMapping.ColumnMappings.Add("UserID", "UserID");
             tableMapping.ColumnMappings.Add("TaskTemplateID", "TaskTemplateID");
-            tableMapping.ColumnMappings.Add("Status", "Status");
+            tableMapping.ColumnMappings.Add("UserID", "UserID");
+            tableMapping.ColumnMappings.Add("Assigned", "Assigned");
             tableMapping.ColumnMappings.Add("Deadline", "Deadline");
-            tableMapping.ColumnMappings.Add("EntryDate", "EntryDate");
+            tableMapping.ColumnMappings.Add("StatusChanged", "StatusChanged");
             tableMapping.ColumnMappings.Add("Comment", "Comment");
+            tableMapping.ColumnMappings.Add("Status", "Status");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TaskLog] ([UserID], [TaskTemplateID], [Status], [Deadline], [E" +
-                "ntryDate], [Comment]) VALUES (@UserID, @TaskTemplateID, @Status, @Deadline, @Ent" +
-                "ryDate, @Comment)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TaskLog] ([TaskTemplateID], [UserID], [Assigned], [Deadline], " +
+                "[StatusChanged], [Comment], [Status]) VALUES (@TaskTemplateID, @UserID, @Assigne" +
+                "d, @Deadline, @StatusChanged, @Comment, @Status)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TaskTemplateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TaskTemplateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Assigned", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Assigned", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Deadline", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Deadline", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EntryDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EntryDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StatusChanged", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StatusChanged", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Comment", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4873,8 +8371,8 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT UserID, TaskTemplateID, Status, Deadline, EntryDate, Comment FROM dbo.Task" +
-                "Log";
+            this._commandCollection[0].CommandText = "SELECT TaskTemplateID, UserID, Assigned, Deadline, StatusChanged, Comment, Status" +
+                " FROM dbo.TaskLog";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4935,18 +8433,592 @@ SELECT ID, GroupName, ParentGroupID, Description FROM dbo.[Group] WHERE (ID = @I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int UserID, int TaskTemplateID, byte Status, System.DateTime Deadline, System.DateTime EntryDate, string Comment) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(UserID));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(TaskTemplateID));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(Status));
+        public virtual int Insert(int TaskTemplateID, global::System.Nullable<int> UserID, System.DateTime Assigned, System.DateTime Deadline, global::System.Nullable<global::System.DateTime> StatusChanged, string Comment, byte Status) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(TaskTemplateID));
+            if ((UserID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(UserID.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(Assigned));
             this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(Deadline));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(EntryDate));
+            if ((StatusChanged.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(StatusChanged.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
             if ((Comment == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Comment));
             }
+            this.Adapter.InsertCommand.Parameters[6].Value = ((byte)(Status));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TaskStatusTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public TaskStatusTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TaskStatus";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("Status", "Status");
+            tableMapping.ColumnMappings.Add("Description", "Description");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[TaskStatus] WHERE (([ID] = @Original_ID) AND ([Status] = @Orig" +
+                "inal_Status))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TaskStatus] ([ID], [Status], [Description]) VALUES (@ID, @Stat" +
+                "us, @Description);\r\nSELECT ID, Status, Description FROM dbo.TaskStatus WHERE (ID" +
+                " = @ID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TaskStatus] SET [ID] = @ID, [Status] = @Status, [Description] = @De" +
+                "scription WHERE (([ID] = @Original_ID) AND ([Status] = @Original_Status));\r\nSELE" +
+                "CT ID, Status, Description FROM dbo.TaskStatus WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ID, Status, Description FROM dbo.TaskStatus";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ChortleDBDataSet.TaskStatusDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ChortleDBDataSet.TaskStatusDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ChortleDBDataSet.TaskStatusDataTable dataTable = new ChortleDBDataSet.TaskStatusDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet.TaskStatusDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "TaskStatus");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(byte Original_ID, string Original_Status) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((byte)(Original_ID));
+            if ((Original_Status == null)) {
+                throw new global::System.ArgumentNullException("Original_Status");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Status));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(byte ID, string Status, string Description) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((byte)(ID));
+            if ((Status == null)) {
+                throw new global::System.ArgumentNullException("Status");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Status));
+            }
+            if ((Description == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Description));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(byte ID, string Status, string Description, byte Original_ID, string Original_Status) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((byte)(ID));
+            if ((Status == null)) {
+                throw new global::System.ArgumentNullException("Status");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Status));
+            }
+            if ((Description == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Description));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((byte)(Original_ID));
+            if ((Original_Status == null)) {
+                throw new global::System.ArgumentNullException("Original_Status");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Status));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string Status, string Description, byte Original_ID, string Original_Status) {
+            return this.Update(Original_ID, Status, Description, Original_ID, Original_Status);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TaskSubGroupAssignmentTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public TaskSubGroupAssignmentTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TaskSubGroupAssignment";
+            tableMapping.ColumnMappings.Add("SubGroupID", "SubGroupID");
+            tableMapping.ColumnMappings.Add("TaskTemplateID", "TaskTemplateID");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TaskSubGroupAssignment] ([SubGroupID], [TaskTemplateID]) VALUE" +
+                "S (@SubGroupID, @TaskTemplateID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SubGroupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SubGroupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TaskTemplateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TaskTemplateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT SubGroupID, TaskTemplateID FROM dbo.TaskSubGroupAssignment";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ChortleDBDataSet.TaskSubGroupAssignmentDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ChortleDBDataSet.TaskSubGroupAssignmentDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ChortleDBDataSet.TaskSubGroupAssignmentDataTable dataTable = new ChortleDBDataSet.TaskSubGroupAssignmentDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet.TaskSubGroupAssignmentDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "TaskSubGroupAssignment");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int SubGroupID, int TaskTemplateID) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SubGroupID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(TaskTemplateID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6263,6 +10335,233 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class UserFriendTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public UserFriendTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "UserFriend";
+            tableMapping.ColumnMappings.Add("UserID", "UserID");
+            tableMapping.ColumnMappings.Add("FriendID", "FriendID");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[UserFriend] ([UserID], [FriendID]) VALUES (@UserID, @FriendID)" +
+                "";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FriendID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FriendID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::WebService.Properties.Settings.Default.ChortleDBConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT UserID, FriendID FROM dbo.UserFriend";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ChortleDBDataSet.UserFriendDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ChortleDBDataSet.UserFriendDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ChortleDBDataSet.UserFriendDataTable dataTable = new ChortleDBDataSet.UserFriendDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet.UserFriendDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ChortleDBDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "UserFriend");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int UserID, int FriendID) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(UserID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(FriendID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -6276,17 +10575,29 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
         
         private GroupTableAdapter _groupTableAdapter;
         
+        private GroupAdminTableAdapter _groupAdminTableAdapter;
+        
+        private GroupOwnerTableAdapter _groupOwnerTableAdapter;
+        
         private GroupUserTableAdapter _groupUserTableAdapter;
         
-        private TaskGroupAssignmentTableAdapter _taskGroupAssignmentTableAdapter;
+        private SubgroupTableAdapter _subgroupTableAdapter;
+        
+        private SubgroupUserTableAdapter _subgroupUserTableAdapter;
         
         private TaskLogTableAdapter _taskLogTableAdapter;
+        
+        private TaskStatusTableAdapter _taskStatusTableAdapter;
+        
+        private TaskSubGroupAssignmentTableAdapter _taskSubGroupAssignmentTableAdapter;
         
         private TaskTemplateTableAdapter _taskTemplateTableAdapter;
         
         private TaskUserAssignmentTableAdapter _taskUserAssignmentTableAdapter;
         
         private UserTableAdapter _userTableAdapter;
+        
+        private UserFriendTableAdapter _userFriendTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -6322,6 +10633,34 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
+        public GroupAdminTableAdapter GroupAdminTableAdapter {
+            get {
+                return this._groupAdminTableAdapter;
+            }
+            set {
+                this._groupAdminTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public GroupOwnerTableAdapter GroupOwnerTableAdapter {
+            get {
+                return this._groupOwnerTableAdapter;
+            }
+            set {
+                this._groupOwnerTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
         public GroupUserTableAdapter GroupUserTableAdapter {
             get {
                 return this._groupUserTableAdapter;
@@ -6336,12 +10675,26 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public TaskGroupAssignmentTableAdapter TaskGroupAssignmentTableAdapter {
+        public SubgroupTableAdapter SubgroupTableAdapter {
             get {
-                return this._taskGroupAssignmentTableAdapter;
+                return this._subgroupTableAdapter;
             }
             set {
-                this._taskGroupAssignmentTableAdapter = value;
+                this._subgroupTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public SubgroupUserTableAdapter SubgroupUserTableAdapter {
+            get {
+                return this._subgroupUserTableAdapter;
+            }
+            set {
+                this._subgroupUserTableAdapter = value;
             }
         }
         
@@ -6356,6 +10709,34 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
             }
             set {
                 this._taskLogTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public TaskStatusTableAdapter TaskStatusTableAdapter {
+            get {
+                return this._taskStatusTableAdapter;
+            }
+            set {
+                this._taskStatusTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public TaskSubGroupAssignmentTableAdapter TaskSubGroupAssignmentTableAdapter {
+            get {
+                return this._taskSubGroupAssignmentTableAdapter;
+            }
+            set {
+                this._taskSubGroupAssignmentTableAdapter = value;
             }
         }
         
@@ -6403,6 +10784,20 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public UserFriendTableAdapter UserFriendTableAdapter {
+            get {
+                return this._userFriendTableAdapter;
+            }
+            set {
+                this._userFriendTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -6424,17 +10819,37 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                             && (this._groupTableAdapter.Connection != null))) {
                     return this._groupTableAdapter.Connection;
                 }
+                if (((this._groupAdminTableAdapter != null) 
+                            && (this._groupAdminTableAdapter.Connection != null))) {
+                    return this._groupAdminTableAdapter.Connection;
+                }
+                if (((this._groupOwnerTableAdapter != null) 
+                            && (this._groupOwnerTableAdapter.Connection != null))) {
+                    return this._groupOwnerTableAdapter.Connection;
+                }
                 if (((this._groupUserTableAdapter != null) 
                             && (this._groupUserTableAdapter.Connection != null))) {
                     return this._groupUserTableAdapter.Connection;
                 }
-                if (((this._taskGroupAssignmentTableAdapter != null) 
-                            && (this._taskGroupAssignmentTableAdapter.Connection != null))) {
-                    return this._taskGroupAssignmentTableAdapter.Connection;
+                if (((this._subgroupTableAdapter != null) 
+                            && (this._subgroupTableAdapter.Connection != null))) {
+                    return this._subgroupTableAdapter.Connection;
+                }
+                if (((this._subgroupUserTableAdapter != null) 
+                            && (this._subgroupUserTableAdapter.Connection != null))) {
+                    return this._subgroupUserTableAdapter.Connection;
                 }
                 if (((this._taskLogTableAdapter != null) 
                             && (this._taskLogTableAdapter.Connection != null))) {
                     return this._taskLogTableAdapter.Connection;
+                }
+                if (((this._taskStatusTableAdapter != null) 
+                            && (this._taskStatusTableAdapter.Connection != null))) {
+                    return this._taskStatusTableAdapter.Connection;
+                }
+                if (((this._taskSubGroupAssignmentTableAdapter != null) 
+                            && (this._taskSubGroupAssignmentTableAdapter.Connection != null))) {
+                    return this._taskSubGroupAssignmentTableAdapter.Connection;
                 }
                 if (((this._taskTemplateTableAdapter != null) 
                             && (this._taskTemplateTableAdapter.Connection != null))) {
@@ -6447,6 +10862,10 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                 if (((this._userTableAdapter != null) 
                             && (this._userTableAdapter.Connection != null))) {
                     return this._userTableAdapter.Connection;
+                }
+                if (((this._userFriendTableAdapter != null) 
+                            && (this._userFriendTableAdapter.Connection != null))) {
+                    return this._userFriendTableAdapter.Connection;
                 }
                 return null;
             }
@@ -6464,13 +10883,28 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                 if ((this._groupTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._groupAdminTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._groupOwnerTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 if ((this._groupUserTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._taskGroupAssignmentTableAdapter != null)) {
+                if ((this._subgroupTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._subgroupUserTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._taskLogTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._taskStatusTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._taskSubGroupAssignmentTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._taskTemplateTableAdapter != null)) {
@@ -6480,6 +10914,9 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     count = (count + 1);
                 }
                 if ((this._userTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._userFriendTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -6502,15 +10939,6 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._taskTemplateTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TaskTemplate.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._taskTemplateTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._userTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.User.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -6529,12 +10957,57 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._taskGroupAssignmentTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TaskGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._groupAdminTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.GroupAdmin.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._taskGroupAssignmentTableAdapter.Update(updatedRows));
+                    result = (result + this._groupAdminTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._subgroupTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Subgroup.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._subgroupTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._taskStatusTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TaskStatus.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._taskStatusTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._taskTemplateTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TaskTemplate.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._taskTemplateTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._groupOwnerTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.GroupOwner.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._groupOwnerTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._subgroupUserTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SubgroupUser.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._subgroupUserTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -6547,12 +11020,30 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._taskSubGroupAssignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TaskSubGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._taskSubGroupAssignmentTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._taskUserAssignmentTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.TaskUserAssignment.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._taskUserAssignmentTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._userFriendTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.UserFriend.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._userFriendTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -6574,14 +11065,6 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._taskTemplateTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TaskTemplate.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._taskTemplateTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._userTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.User.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -6598,11 +11081,51 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._taskGroupAssignmentTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TaskGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._groupAdminTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.GroupAdmin.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._taskGroupAssignmentTableAdapter.Update(addedRows));
+                    result = (result + this._groupAdminTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._subgroupTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Subgroup.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._subgroupTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._taskStatusTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TaskStatus.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._taskStatusTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._taskTemplateTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TaskTemplate.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._taskTemplateTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._groupOwnerTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.GroupOwner.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._groupOwnerTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._subgroupUserTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SubgroupUser.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._subgroupUserTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -6614,11 +11137,27 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._taskSubGroupAssignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TaskSubGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._taskSubGroupAssignmentTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._taskUserAssignmentTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.TaskUserAssignment.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._taskUserAssignmentTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._userFriendTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.UserFriend.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._userFriendTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -6632,11 +11171,27 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(ChortleDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._userFriendTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.UserFriend.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._userFriendTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._taskUserAssignmentTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TaskUserAssignment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._taskUserAssignmentTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._taskSubGroupAssignmentTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TaskSubGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._taskSubGroupAssignmentTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -6648,11 +11203,51 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._taskGroupAssignmentTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TaskGroupAssignment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._subgroupUserTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SubgroupUser.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._taskGroupAssignmentTableAdapter.Update(deletedRows));
+                    result = (result + this._subgroupUserTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._groupOwnerTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.GroupOwner.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._groupOwnerTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._taskTemplateTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TaskTemplate.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._taskTemplateTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._taskStatusTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TaskStatus.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._taskStatusTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._subgroupTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Subgroup.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._subgroupTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._groupAdminTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.GroupAdmin.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._groupAdminTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -6669,14 +11264,6 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._userTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._taskTemplateTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TaskTemplate.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._taskTemplateTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -6732,18 +11319,43 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._groupAdminTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._groupAdminTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._groupOwnerTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._groupOwnerTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             if (((this._groupUserTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._groupUserTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._taskGroupAssignmentTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._taskGroupAssignmentTableAdapter.Connection) == false))) {
+            if (((this._subgroupTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._subgroupTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._subgroupUserTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._subgroupUserTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
             if (((this._taskLogTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._taskLogTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._taskStatusTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._taskStatusTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._taskSubGroupAssignmentTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._taskSubGroupAssignmentTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -6759,6 +11371,11 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
             }
             if (((this._userTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._userTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._userFriendTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._userFriendTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -6803,6 +11420,24 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                         adaptersWithAcceptChangesDuringUpdate.Add(this._groupTableAdapter.Adapter);
                     }
                 }
+                if ((this._groupAdminTableAdapter != null)) {
+                    revertConnections.Add(this._groupAdminTableAdapter, this._groupAdminTableAdapter.Connection);
+                    this._groupAdminTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._groupAdminTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._groupAdminTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._groupAdminTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._groupAdminTableAdapter.Adapter);
+                    }
+                }
+                if ((this._groupOwnerTableAdapter != null)) {
+                    revertConnections.Add(this._groupOwnerTableAdapter, this._groupOwnerTableAdapter.Connection);
+                    this._groupOwnerTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._groupOwnerTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._groupOwnerTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._groupOwnerTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._groupOwnerTableAdapter.Adapter);
+                    }
+                }
                 if ((this._groupUserTableAdapter != null)) {
                     revertConnections.Add(this._groupUserTableAdapter, this._groupUserTableAdapter.Connection);
                     this._groupUserTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -6812,13 +11447,22 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                         adaptersWithAcceptChangesDuringUpdate.Add(this._groupUserTableAdapter.Adapter);
                     }
                 }
-                if ((this._taskGroupAssignmentTableAdapter != null)) {
-                    revertConnections.Add(this._taskGroupAssignmentTableAdapter, this._taskGroupAssignmentTableAdapter.Connection);
-                    this._taskGroupAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._taskGroupAssignmentTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._taskGroupAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._taskGroupAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._taskGroupAssignmentTableAdapter.Adapter);
+                if ((this._subgroupTableAdapter != null)) {
+                    revertConnections.Add(this._subgroupTableAdapter, this._subgroupTableAdapter.Connection);
+                    this._subgroupTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._subgroupTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._subgroupTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._subgroupTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._subgroupTableAdapter.Adapter);
+                    }
+                }
+                if ((this._subgroupUserTableAdapter != null)) {
+                    revertConnections.Add(this._subgroupUserTableAdapter, this._subgroupUserTableAdapter.Connection);
+                    this._subgroupUserTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._subgroupUserTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._subgroupUserTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._subgroupUserTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._subgroupUserTableAdapter.Adapter);
                     }
                 }
                 if ((this._taskLogTableAdapter != null)) {
@@ -6828,6 +11472,24 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     if (this._taskLogTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._taskLogTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._taskLogTableAdapter.Adapter);
+                    }
+                }
+                if ((this._taskStatusTableAdapter != null)) {
+                    revertConnections.Add(this._taskStatusTableAdapter, this._taskStatusTableAdapter.Connection);
+                    this._taskStatusTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._taskStatusTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._taskStatusTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._taskStatusTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._taskStatusTableAdapter.Adapter);
+                    }
+                }
+                if ((this._taskSubGroupAssignmentTableAdapter != null)) {
+                    revertConnections.Add(this._taskSubGroupAssignmentTableAdapter, this._taskSubGroupAssignmentTableAdapter.Connection);
+                    this._taskSubGroupAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._taskSubGroupAssignmentTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._taskSubGroupAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._taskSubGroupAssignmentTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._taskSubGroupAssignmentTableAdapter.Adapter);
                     }
                 }
                 if ((this._taskTemplateTableAdapter != null)) {
@@ -6855,6 +11517,15 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     if (this._userTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._userTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._userTableAdapter.Adapter);
+                    }
+                }
+                if ((this._userFriendTableAdapter != null)) {
+                    revertConnections.Add(this._userFriendTableAdapter, this._userFriendTableAdapter.Connection);
+                    this._userFriendTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._userFriendTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._userFriendTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._userFriendTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._userFriendTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -6919,17 +11590,37 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                     this._groupTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._groupTableAdapter]));
                     this._groupTableAdapter.Transaction = null;
                 }
+                if ((this._groupAdminTableAdapter != null)) {
+                    this._groupAdminTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._groupAdminTableAdapter]));
+                    this._groupAdminTableAdapter.Transaction = null;
+                }
+                if ((this._groupOwnerTableAdapter != null)) {
+                    this._groupOwnerTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._groupOwnerTableAdapter]));
+                    this._groupOwnerTableAdapter.Transaction = null;
+                }
                 if ((this._groupUserTableAdapter != null)) {
                     this._groupUserTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._groupUserTableAdapter]));
                     this._groupUserTableAdapter.Transaction = null;
                 }
-                if ((this._taskGroupAssignmentTableAdapter != null)) {
-                    this._taskGroupAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._taskGroupAssignmentTableAdapter]));
-                    this._taskGroupAssignmentTableAdapter.Transaction = null;
+                if ((this._subgroupTableAdapter != null)) {
+                    this._subgroupTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._subgroupTableAdapter]));
+                    this._subgroupTableAdapter.Transaction = null;
+                }
+                if ((this._subgroupUserTableAdapter != null)) {
+                    this._subgroupUserTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._subgroupUserTableAdapter]));
+                    this._subgroupUserTableAdapter.Transaction = null;
                 }
                 if ((this._taskLogTableAdapter != null)) {
                     this._taskLogTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._taskLogTableAdapter]));
                     this._taskLogTableAdapter.Transaction = null;
+                }
+                if ((this._taskStatusTableAdapter != null)) {
+                    this._taskStatusTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._taskStatusTableAdapter]));
+                    this._taskStatusTableAdapter.Transaction = null;
+                }
+                if ((this._taskSubGroupAssignmentTableAdapter != null)) {
+                    this._taskSubGroupAssignmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._taskSubGroupAssignmentTableAdapter]));
+                    this._taskSubGroupAssignmentTableAdapter.Transaction = null;
                 }
                 if ((this._taskTemplateTableAdapter != null)) {
                     this._taskTemplateTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._taskTemplateTableAdapter]));
@@ -6942,6 +11633,10 @@ SELECT ID, Username, FirstName, LastName, Email, PasswordHash FROM dbo.[User] WH
                 if ((this._userTableAdapter != null)) {
                     this._userTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._userTableAdapter]));
                     this._userTableAdapter.Transaction = null;
+                }
+                if ((this._userFriendTableAdapter != null)) {
+                    this._userFriendTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._userFriendTableAdapter]));
+                    this._userFriendTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

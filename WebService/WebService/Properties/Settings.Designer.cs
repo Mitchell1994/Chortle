@@ -27,7 +27,7 @@ namespace WebService.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=kserv.ddns.net;Initial Catalog=ChortleDB;Persist Security Info=True;U" +
-            "ser ID=MitchellL;Password=Long1994")]
+            "ser ID=GianniC;Password=1337Ez1337")]
         public string ChortleDBConnectionString {
             get {
                 return ((string)(this["ChortleDBConnectionString"]));

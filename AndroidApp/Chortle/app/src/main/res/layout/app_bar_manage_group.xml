@@ -32,6 +32,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@color/lightGreen"
         android:src="@drawable/ic_done_24dp"
-        android:tint="@color/white"/>
+        android:tint="@color/white"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

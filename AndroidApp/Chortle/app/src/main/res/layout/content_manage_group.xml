@@ -37,8 +37,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                />
+                android:layout_weight="1"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -52,8 +51,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <!--Members title bar-->
@@ -73,8 +71,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1"/>
 
                 <Button
                     android:layout_width="wrap_content"
@@ -84,6 +81,144 @@
                     style="@style/TextButton"/>
 
             </LinearLayout>
+
+            <!--Members items-->
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+
+                    <!--Element-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        style="@style/DefaultMargins">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:src="@drawable/icon_conor"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Conor"
+                            style="@style/Caption"/>
+                    </LinearLayout>
+
+                    <!--Element-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        style="@style/DefaultMargins">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:src="@drawable/icon_gianni"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gianni"
+                            style="@style/Caption"/>
+                    </LinearLayout>
+
+                    <!--Element-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        style="@style/DefaultMargins">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:src="@drawable/icon_mitchell"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mitchell"
+                            style="@style/Caption"/>
+                    </LinearLayout>
+
+                    <!--Element-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        style="@style/DefaultMargins">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:src="@drawable/icon_conor"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Conor"
+                            style="@style/Caption"/>
+                    </LinearLayout>
+
+                    <!--Element-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        style="@style/DefaultMargins">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:src="@drawable/icon_gianni"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gianni"
+                            style="@style/Caption"/>
+                    </LinearLayout>
+
+                    <!--Element-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        style="@style/DefaultMargins">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:src="@drawable/icon_mitchell"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mitchell"
+                            style="@style/Caption"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </HorizontalScrollView>
 
         </LinearLayout>
 

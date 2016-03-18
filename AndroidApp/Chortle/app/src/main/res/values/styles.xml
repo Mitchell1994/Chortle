@@ -28,7 +28,7 @@
 
     <style name="Title">
         <item name="android:textSize">20sp</item>
-        <item name="android:fontFamily">sans_serif_medium</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -58,6 +58,22 @@
         <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
         <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="Subheading">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="ButtonFont">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextButton" parent="ButtonFont">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
     </style>
     
 

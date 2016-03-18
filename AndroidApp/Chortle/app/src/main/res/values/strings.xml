@@ -34,4 +34,6 @@
     
     <!--Manage group-->
     <string name="manage_group">Manage a group</string>
+    <string name="members">Members</string>
+    <string name="add_new">ADD NEW</string>
 </resources>

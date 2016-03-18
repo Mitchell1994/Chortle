@@ -100,6 +100,14 @@
                     android:singleLine="true"
                     android:onClick="startNewGroupActivity"/>
 
+                <Button
+                    android:id="@+id/manage_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manage_group"
+                    android:singleLine="true"
+                    android:onClick="startNewGroupManagementActivity"/>
+
             </LinearLayout>
 
         </HorizontalScrollView>

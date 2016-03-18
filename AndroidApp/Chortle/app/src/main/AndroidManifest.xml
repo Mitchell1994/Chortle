@@ -20,10 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".CreateUserActivity" />
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".CreateGroupActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".CreateGroupActivity" />
+        <activity
+            android:name=".ManageGroupActivity"
+            android:label="@string/title_activity_manage_group"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

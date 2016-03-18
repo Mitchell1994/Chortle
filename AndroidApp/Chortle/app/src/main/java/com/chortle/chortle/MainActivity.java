@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     public void startLoginActivity(View view){
         Intent intentLogin = new Intent(this, LoginActivity.class);
 
-        //Add Server URL to the new user activity
+        //Add Server URL to the new login activity
         intentLogin.putExtra("URL", url);
         startActivity(intentLogin);
     }
@@ -130,6 +130,12 @@ public class MainActivity extends AppCompatActivity {
         //Add Server URL to the new group activity
         intentNewGroup.putExtra("URL", url + "/groups");
         startActivity(intentNewGroup);
+    }
+
+    public void startNewGroupManagementActivity(View v){
+        Intent intentManageGroup = new Intent(this, ManageGroupActivity.class);
+
+        startActivity(intentManageGroup);
     }
 
 }

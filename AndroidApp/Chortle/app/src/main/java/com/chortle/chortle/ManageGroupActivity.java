@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -106,12 +107,12 @@ public class ManageGroupActivity extends AppCompatActivity
     public void addUser(View v){
         Random rnd = new Random();
 
-        addNewUserElement("User " + ++userCount, (new Random()).nextInt(taskCount+1));
+        addNewUserElement("User " + ++userCount, (new Random()).nextInt(taskCount + 1));
     }
 
     public void addTaskGroup(View v){
 
-        addNewTaskGroupElement("TaskGroup " + ++taskGroupCount, (new Random()).nextInt(taskGroupCount+1), (new Random()).nextInt(taskCount+1));
+        addNewTaskGroupElement("TaskGroup " + ++taskGroupCount, (new Random()).nextInt(taskGroupCount + 1), (new Random()).nextInt(taskCount + 1));
     }
 
     public void addTask(View v){
@@ -130,6 +131,8 @@ public class ManageGroupActivity extends AppCompatActivity
             GroupElementFragment user = GroupElementFragment.newInstance(displayName, -1, numberOfTasks);
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_members,user).commit();
         }
+
+        updateCounts();
     }
 
     public void addNewTaskGroupElement(String displayName, int numberOfUsers, int numberOfTasks){
@@ -139,6 +142,8 @@ public class ManageGroupActivity extends AppCompatActivity
             GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, numberOfTasks);
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_taskgroups,taskGroup).commit();
         }
+
+        updateCounts();
     }
 
     public void addNewTaskElement(String displayName, int numberOfUsers){
@@ -148,5 +153,13 @@ public class ManageGroupActivity extends AppCompatActivity
             GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, -1);
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_tasks,taskGroup).commit();
         }
+
+        updateCounts();
+    }
+
+    private void updateCounts(){
+        ((TextView)findViewById(R.id.membersTitle)).setText(getString(R.string.members) + " ("+ userCount + ") ");
+        ((TextView)findViewById(R.id.taskGroupsTitle)).setText(getString(R.string.task_groups) + " ("+ taskGroupCount + ") ");
+        ((TextView)findViewById(R.id.tasksTitle)).setText(getString(R.string.tasks) + " ("+ taskCount + ") ");
     }
 }

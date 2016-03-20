@@ -70,6 +70,7 @@
                     style="@style/DefaultMargins">
 
                     <TextView
+                        android:id="@+id/membersTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/members"
@@ -133,6 +134,7 @@
                     style="@style/DefaultMargins">
 
                     <TextView
+                        android:id="@+id/taskGroupsTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/task_groups"
@@ -192,6 +194,7 @@
                     style="@style/DefaultMargins">
 
                     <TextView
+                        android:id="@+id/tasksTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/tasks"

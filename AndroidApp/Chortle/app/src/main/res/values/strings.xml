@@ -8,6 +8,8 @@
     <string name="action_settings">Settings</string>
     <string name="main_activity_testing">Chortle Testing - Home</string>
 
+    <string name="undefined">undefined</string>
+
 
     <!--User creation string-->
     <string name="create_user">Create a new user</string>

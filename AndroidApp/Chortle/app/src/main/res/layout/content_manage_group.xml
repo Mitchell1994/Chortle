@@ -105,12 +105,12 @@
 
                         <!--ELEMENTS GO HERE-->
                         <!--Element-->
-                        <fragment
-                            android:id="@+id/frag_1"
-                            android:name="com.chortle.chortle.GroupElementFragment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:layout="@layout/fragment_group_element"/>
+                        <!--<fragment-->
+                            <!--android:id="@+id/frag_1"-->
+                            <!--android:name="com.chortle.chortle.GroupElementFragment"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--tools:layout="@layout/fragment_group_element"/>-->
 
                     </LinearLayout>
 

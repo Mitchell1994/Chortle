@@ -1,12 +1,18 @@
 package com.chortle.chortle;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.Random;
 
 
 /**
@@ -23,9 +29,9 @@ public class GroupElementFragment extends Fragment {
     private static final String ARG_USER_COUNT = "userCount";
     private static final String ARG_TASK_COUNT = "taskCount";
 
-    private String displayName;
-    private int userCount;
-    private int taskCount;
+    private String displayName=null;
+    private int userCount=-1;
+    private int taskCount=-1;
 
     public GroupElementFragment(){}
 
@@ -53,7 +59,35 @@ public class GroupElementFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_group_element, container, false);
+        View view = inflater.inflate(R.layout.fragment_group_element, container, false);
+
+        //Setup values
+
+        //If displayname has been defined, use it
+        if(displayName != null){
+            ((TextView) view.findViewById(R.id.displayName)).setText(displayName);
+        }
+
+        //If a user count has been defined
+        if(userCount >= 0){
+            ((TextView) view.findViewById(R.id.userCount)).setText(""+userCount);
+        }else{
+            ((LinearLayout)view.findViewById(R.id.userCountLayout)).setVisibility(View.GONE);
+        }
+
+        //if a task count has been defined
+        if(taskCount >= 0){
+            ((TextView) view.findViewById(R.id.taskCount)).setText(""+taskCount);
+        }else{
+            ((LinearLayout)view.findViewById(R.id.taskCountLayout)).setVisibility(View.GONE);
+        }
+
+        //Randomly assign a background color
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        ((ImageView)view.findViewById(R.id.groupElementImage)).setBackgroundColor(color);
+
+        return view;
     }
 
 }

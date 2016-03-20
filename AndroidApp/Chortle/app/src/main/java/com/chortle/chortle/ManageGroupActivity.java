@@ -14,9 +14,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Random;
+
 public class ManageGroupActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private int userCount,taskGroupCount,taskCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,26 +104,49 @@ public class ManageGroupActivity extends AppCompatActivity
     }
 
     public void addUser(View v){
+        Random rnd = new Random();
 
+        addNewUserElement("User " + ++userCount, (new Random()).nextInt(taskCount+1));
     }
 
     public void addTaskGroup(View v){
 
+        addNewTaskGroupElement("TaskGroup " + ++taskGroupCount, (new Random()).nextInt(taskGroupCount+1), (new Random()).nextInt(taskCount+1));
     }
 
     public void addTask(View v){
 
+        addNewTaskElement("Task " + ++taskCount, (new Random()).nextInt(userCount + 1));
     }
 
     public void editGroupName(View v){
 
     }
 
-    public void displayNewUserElement(String displayName, int numberOfTasks){
+    public void addNewUserElement(String displayName, int numberOfTasks){
         //TODO Make this method take a a user object
-        if(findViewById(R.id.fragment_container_members) != null){
-            GroupElementFragment user = new GroupElementFragment();
-        }
 
+        if(findViewById(R.id.fragment_container_members) != null){
+            GroupElementFragment user = GroupElementFragment.newInstance(displayName, -1, numberOfTasks);
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_members,user).commit();
+        }
+    }
+
+    public void addNewTaskGroupElement(String displayName, int numberOfUsers, int numberOfTasks){
+        //TODO Make this method take a a user object
+
+        if(findViewById(R.id.fragment_container_members) != null){
+            GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, numberOfTasks);
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_taskgroups,taskGroup).commit();
+        }
+    }
+
+    public void addNewTaskElement(String displayName, int numberOfUsers){
+        //TODO Make this method take a a user object
+
+        if(findViewById(R.id.fragment_container_members) != null){
+            GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, -1);
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_tasks,taskGroup).commit();
+        }
     }
 }

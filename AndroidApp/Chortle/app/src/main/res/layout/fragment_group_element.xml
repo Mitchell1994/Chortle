@@ -31,9 +31,10 @@
         </FrameLayout>
 
         <TextView
+            android:id="@+id/displayName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Generic Item"
+            android:text="@string/undefined"
             style="@style/Caption"/>
 
         <LinearLayout
@@ -45,7 +46,7 @@
             <!--Task Count-->
 
             <LinearLayout
-                android:id="@+id/taskCountGroup"
+                android:id="@+id/taskCountLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -66,7 +67,7 @@
 
             <!--User Count-->
             <LinearLayout
-                android:id="@+id/userCountGroup"
+                android:id="@+id/userCountLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

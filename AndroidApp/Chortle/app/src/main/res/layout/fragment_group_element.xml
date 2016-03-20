@@ -1,0 +1,93 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chortle.chortle.GroupElementFragment">
+
+    <!--Element-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        style="@style/GroupElementLayout">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            style="@style/GroupElementImage">
+
+            <ImageView
+                android:id="@+id/groupElementImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lightGrey"/>
+
+            <ImageView
+                android:id="@+id/mask"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:tint="@color/background"
+                android:src="@drawable/circle_mask" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generic Item"
+            style="@style/Caption"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!--Task Count-->
+
+            <LinearLayout
+                android:id="@+id/taskCountGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:src="@drawable/ic_assignment_24dp"
+                    style="@style/SmallIcon"/>
+
+                <TextView
+                    android:id="@+id/taskCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    style="@style/Caption"/>
+
+             </LinearLayout>
+
+            <!--User Count-->
+            <LinearLayout
+                android:id="@+id/userCountGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="visible">
+
+                <ImageView
+                    android:src="@drawable/ic_account_box_24dp"
+                    style="@style/SmallIcon"/>
+
+                <TextView
+                    android:id="@+id/userCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    style="@style/Caption"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -77,12 +77,32 @@
     </style>
 
     <style name="Caption">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/size_caption</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="SmallScrollbars">
         <item name="android:scrollbarSize">@dimen/scrollbar_small</item>
+    </style>
+
+    <style name="GroupElementLayout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="GroupElementImage">
+        <item name="android:layout_width">@dimen/group_element_image_size</item>
+        <item name="android:layout_height">@dimen/group_element_image_size</item>
+    </style>
+
+    <style name="SmallIcon">
+        <item name="android:layout_width">@dimen/size_caption</item>
+        <item name="android:layout_height">@dimen/size_caption</item>
+        <item name="android:tint">@color/smallIconTint</item>
     </style>
     
 

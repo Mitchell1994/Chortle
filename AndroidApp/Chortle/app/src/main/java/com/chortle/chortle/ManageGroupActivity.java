@@ -1,5 +1,6 @@
 package com.chortle.chortle;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,9 +28,8 @@ public class ManageGroupActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //End the activity
                 finish();
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //        .setAction("Action", null).show();
             }
         });
 
@@ -98,5 +98,29 @@ public class ManageGroupActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void addUser(View v){
+
+    }
+
+    public void addTaskGroup(View v){
+
+    }
+
+    public void addTask(View v){
+
+    }
+
+    public void editGroupName(View v){
+
+    }
+
+    public void displayNewUserElement(String displayName, int numberOfTasks){
+        //TODO Make this method take a a user object
+        if(findViewById(R.id.fragment_container_members) != null){
+            GroupElementFragment user = new GroupElementFragment();
+        }
+
     }
 }

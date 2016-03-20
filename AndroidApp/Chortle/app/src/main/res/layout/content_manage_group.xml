@@ -7,12 +7,9 @@
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.chortle.chortle.ManageGroupActivity"
-    tools:showIn="@layout/app_bar_manage_group">
+    tools:showIn="@layout/app_bar_manage_group"
+    android:background="@color/background">
 
-    <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
-    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
-    <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
-    <!--android:paddingTop="@dimen/activity_vertical_margin"-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -47,17 +44,20 @@
                     android:layout_weight="1"/>
 
                 <ImageButton
+                    android:id="@+id/editGroupName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_mode_edit_24dp"
                     android:tint="@color/white"
                     android:background="@null"
-                    android:layout_gravity="right"/>
+                    android:layout_gravity="right"
+                    android:onClick="editGroupName"/>
 
             </LinearLayout>
 
             <!--Members segment of the screen-->
             <LinearLayout
+                android:id="@+id/membersLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -86,6 +86,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/add_new"
                         android:textColor="@color/lightGrey"
+                        android:onClick="addUser"
                         style="@style/TextButton"/>
 
                 </LinearLayout>
@@ -97,131 +98,19 @@
                     style="@style/SmallScrollbars">
 
                     <LinearLayout
+                        android:id="@+id/fragment_container_members"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-
+                        <!--ELEMENTS GO HERE-->
                         <!--Element-->
-                        <LinearLayout
+                        <fragment
+                            android:id="@+id/frag_1"
+                            android:name="com.chortle.chortle.GroupElementFragment"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_conor"
-                                android:elevation="4dp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Conor"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_gianni"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Gianni"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_mitchell"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mitchell"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_conor"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Conor"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_gianni"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Gianni"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_mitchell"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mitchell"
-                                style="@style/Caption"/>
-                        </LinearLayout>
+                            android:layout_height="wrap_content"
+                            tools:layout="@layout/fragment_group_element"/>
 
                     </LinearLayout>
 
@@ -229,12 +118,14 @@
 
             </LinearLayout>
 
+            <!--Task groups-->
             <LinearLayout
+                android:id="@+id/taskGroupsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!--Work parties title bar-->
+                <!--Taskgroups title bar-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -258,135 +149,37 @@
                         android:layout_height="wrap_content"
                         android:text="@string/add_new"
                         android:textColor="@color/lightGrey"
+                        android:onClick="addTaskGroup"
                         style="@style/TextButton"/>
 
                 </LinearLayout>
 
-                <!--Work party items-->
+                <!--Taskgroup items-->
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/SmallScrollbars">
 
                     <LinearLayout
+                        android:id="@+id/fragment_container_taskgroups"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-
+                        <!--ELEMENTS GO HERE-->
                         <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_bathroom"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Bathroom"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_cooking"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Cooking"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_garden"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Garden"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_kitchen"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Kitchen"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_lounge"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Lounge"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-
 
 
 
                     </LinearLayout>
 
-
-
                 </HorizontalScrollView>
 
             </LinearLayout>
 
+            <!--Tasks-->
             <LinearLayout
+                android:id="@+id/tasksLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -415,129 +208,28 @@
                         android:layout_height="wrap_content"
                         android:text="@string/add_new"
                         android:textColor="@color/lightGrey"
+                        android:onClick="addTask"
                         style="@style/TextButton"/>
 
                 </LinearLayout>
 
-                <!--Work party items-->
+                <!--Task items-->
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/SmallScrollbars">
 
                     <LinearLayout
+                        android:id="@+id/fragment_container_tasks"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-
+                        <!--ELEMENTS GO HERE-->
                         <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_bathroom"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Bathroom"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_cooking"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Cooking"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_garden"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Garden"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_kitchen"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Kitchen"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-                        <!--Element-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            style="@style/DefaultMargins">
-
-                            <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:src="@drawable/icon_lounge"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Lounge"
-                                style="@style/Caption"/>
-                        </LinearLayout>
-
-
-
 
 
                     </LinearLayout>
-
-
 
                 </HorizontalScrollView>
 

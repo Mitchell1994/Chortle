@@ -11,7 +11,7 @@
     <string name="undefined">undefined</string>
 
 
-    <!--User creation string-->
+    <!--UserDTO creation string-->
     <string name="create_user">Create a new user</string>
     <string name="username">Username</string>
     <string name="username_prompt">Enter a username</string>
@@ -28,13 +28,13 @@
     <string name="email_or_username_prompt">Enter your Email or Username</string>
     <string name="login">Login</string>
 
-    <!--User creation string-->
+    <!--UserDTO creation string-->
     <string name="create_group">Create a new group</string>
     <string name="group_name_prompt">Enter a group name</string>
     <string name="group_description_prompt">Enter a group description</string>
     <string name="title_activity_manage_group">Manage Group</string>
 
-    <!--Manage group-->
+    <!--Manage groupDTO-->
     <string name="manage_group">Manage a group</string>
     <string name="members">Members</string>
     <string name="add_new">ADD NEW</string>

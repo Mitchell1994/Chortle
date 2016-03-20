@@ -38,7 +38,7 @@ public class CreateGroupActivity extends AppCompatActivity{
         groupName = ((EditText) findViewById(R.id.group_name)).getText().toString();
         groupDescription = ((EditText) findViewById(R.id.group_description)).getText().toString();
 
-        Group group = new Group(groupName,groupDescription);
-        new PostRequestHandler(getApplicationContext(),url,group,"addGroupResult",Volley.newRequestQueue(this)).send();
+        GroupDTO groupDTO = new GroupDTO(groupName,groupDescription);
+        new PostRequestHandler(getApplicationContext(),url, groupDTO,"addGroupResult",Volley.newRequestQueue(this)).send();
     }
 }

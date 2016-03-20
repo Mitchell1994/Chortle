@@ -1,23 +1,20 @@
 package com.chortle.chortle;
 
+import java.util.List;
+import java.util.Set;
+
 /**
- * Created by Mitchell on 13/03/2016.
+ * Created by Conor on 20/03/2016.
  */
 public class Group {
-    public String groupName;
-    public String groupDescription;
 
-    public Group(String groupName,
-                String groupDescription){
-        super();
-        this.groupName = groupName;
-        this.groupDescription = groupDescription;
-    }
+    private int id;
+    private String groupName, description;
+    private Set<User> members, admins;
+    private User Owner;
+    private List<Task> tasks;
 
-    @Override
-    public String toString() {
-        return "Group[groupname=" + groupName
-                + ", firstname=" + groupDescription
-                + "]";
+    public Group(){
+
     }
 }

@@ -2,9 +2,11 @@ package com.chortle.chortle;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,19 +30,31 @@ public class GroupElementFragment extends Fragment {
     private static final String ARG_DISPLAY_NAME = "displayName";
     private static final String ARG_USER_COUNT = "userCount";
     private static final String ARG_TASK_COUNT = "taskCount";
+    private static final String ARG_ICON_TYPE = "taskCount";
+
+    public static final int ICON_NONE = -1;
+    public static final int ICON_USER = 0;
+    public static final int ICON_TASK = 1;
+    public static final int ICON_GROUP = 2;
 
     private String displayName=null;
     private int userCount=-1;
     private int taskCount=-1;
+    private int iconType=-1;
 
     public GroupElementFragment(){}
 
     public static GroupElementFragment newInstance(String displayName, int userCount, int taskCount) {
+        return newInstance(displayName,userCount,taskCount,ICON_NONE);
+    }
+
+    public static GroupElementFragment newInstance(String displayName, int userCount, int taskCount, int iconType) {
         GroupElementFragment fragment = new GroupElementFragment();
         Bundle args = new Bundle();
         args.putString(ARG_DISPLAY_NAME, displayName);
         args.putInt(ARG_USER_COUNT, userCount);
         args.putInt(ARG_TASK_COUNT, taskCount);
+        args.putInt(ARG_ICON_TYPE, iconType);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,6 +66,7 @@ public class GroupElementFragment extends Fragment {
             displayName = getArguments().getString(ARG_DISPLAY_NAME);
             userCount = getArguments().getInt(ARG_USER_COUNT);
             taskCount = getArguments().getInt(ARG_TASK_COUNT);
+            iconType = getArguments().getInt(ARG_ICON_TYPE);
         }
     }
 
@@ -80,6 +95,22 @@ public class GroupElementFragment extends Fragment {
             ((TextView) view.findViewById(R.id.taskCount)).setText(""+taskCount);
         }else{
             ((LinearLayout)view.findViewById(R.id.taskCountLayout)).setVisibility(View.GONE);
+        }
+
+        ImageView icon = (ImageView)view.findViewById(R.id.groupElementIcon);
+
+        switch (iconType){
+            case ICON_GROUP:
+                icon.setImageResource(R.drawable.ic_group_24dp);
+                break;
+            case ICON_TASK:
+                icon.setImageResource(R.drawable.ic_assignment_24dp);
+                break;
+            case ICON_USER:
+                icon.setImageResource(R.drawable.ic_person_24dp);
+                break;
+            default:
+
         }
 
         //Randomly assign a background color

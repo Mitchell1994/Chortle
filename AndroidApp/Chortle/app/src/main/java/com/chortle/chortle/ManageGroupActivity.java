@@ -130,7 +130,7 @@ public class ManageGroupActivity extends AppCompatActivity
         //TODO Make this method take a a user object
 
         if(findViewById(R.id.fragment_container_members) != null){
-            GroupElementFragment user = GroupElementFragment.newInstance(displayName, -1, numberOfTasks);
+            GroupElementFragment user = GroupElementFragment.newInstance(displayName, -1, numberOfTasks, GroupElementFragment.ICON_USER);
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_members,user).commit();
         }
 
@@ -141,7 +141,7 @@ public class ManageGroupActivity extends AppCompatActivity
         //TODO Make this method take a a user object
 
         if(findViewById(R.id.fragment_container_members) != null){
-            GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, numberOfTasks);
+            GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, numberOfTasks, GroupElementFragment.ICON_GROUP);
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_taskgroups,taskGroup).commit();
         }
 
@@ -152,7 +152,7 @@ public class ManageGroupActivity extends AppCompatActivity
         //TODO Make this method take a a user object
 
         if(findViewById(R.id.fragment_container_members) != null){
-            GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, -1);
+            GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, -1 ,GroupElementFragment.ICON_TASK);
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_tasks,taskGroup).commit();
         }
 

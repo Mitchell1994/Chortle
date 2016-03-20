@@ -25,9 +25,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:elevation="4dp"
-                android:background="@color/colorAccent"
                 style="@style/DefaultMargins">
+
+                <!--android:background="@color/colorAccent"-->
+                <!--android:elevation="4dp"-->
 
                 <TextView
                     android:id="@+id/group_name"
@@ -35,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:text="Group Name"
                     style="@style/Title"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/darkGrey"/>
 
                 <!--Spacing layout-->
                 <View
@@ -48,12 +49,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_mode_edit_24dp"
-                    android:tint="@color/white"
+                    android:tint="@color/darkGrey"
                     android:background="@null"
                     android:layout_gravity="right"
                     android:onClick="editGroupName"/>
 
             </LinearLayout>
+
+            <!--Dividor-->
+            <View style="@style/Divider"/>
 
             <!--Members segment of the screen-->
             <LinearLayout

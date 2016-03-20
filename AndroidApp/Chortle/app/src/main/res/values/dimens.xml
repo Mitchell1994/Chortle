@@ -12,6 +12,7 @@
 
     <dimen name="group_element_image_size">60dp</dimen>
     <dimen name="size_caption">12sp</dimen>
+    <dimen name="fab_size">72dp</dimen>
 
 
 

@@ -27,9 +27,6 @@
                 android:orientation="horizontal"
                 style="@style/DefaultMargins">
 
-                <!--android:background="@color/colorAccent"-->
-                <!--android:elevation="4dp"-->
-
                 <TextView
                     android:id="@+id/group_name"
                     android:layout_width="wrap_content"

@@ -140,7 +140,7 @@ public class ManageGroupActivity extends AppCompatActivity
     public void addNewTaskGroupElement(String displayName, int numberOfUsers, int numberOfTasks){
         //TODO Make this method take a a user object
 
-        if(findViewById(R.id.fragment_container_members) != null){
+        if(findViewById(R.id.fragment_container_taskgroups) != null){
             GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, numberOfTasks, GroupElementFragment.ICON_GROUP);
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_taskgroups,taskGroup).commit();
         }
@@ -151,9 +151,9 @@ public class ManageGroupActivity extends AppCompatActivity
     public void addNewTaskElement(String displayName, int numberOfUsers){
         //TODO Make this method take a a user object
 
-        if(findViewById(R.id.fragment_container_members) != null){
-            GroupElementFragment taskGroup = GroupElementFragment.newInstance(displayName, numberOfUsers, -1 ,GroupElementFragment.ICON_TASK);
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_tasks,taskGroup).commit();
+        if(findViewById(R.id.fragment_container_tasks) != null){
+            GroupElementFragment task = GroupElementFragment.newInstance(displayName, numberOfUsers, -1,GroupElementFragment.ICON_TASK);
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_tasks,task).commit();
         }
 
         updateCounts();

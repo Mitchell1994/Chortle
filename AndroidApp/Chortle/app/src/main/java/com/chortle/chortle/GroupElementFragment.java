@@ -30,7 +30,7 @@ public class GroupElementFragment extends Fragment {
     private static final String ARG_DISPLAY_NAME = "displayName";
     private static final String ARG_USER_COUNT = "userCount";
     private static final String ARG_TASK_COUNT = "taskCount";
-    private static final String ARG_ICON_TYPE = "taskCount";
+    private static final String ARG_ICON_TYPE = "iconType";
 
     public static final int ICON_NONE = -1;
     public static final int ICON_USER = 0;
@@ -49,13 +49,18 @@ public class GroupElementFragment extends Fragment {
     }
 
     public static GroupElementFragment newInstance(String displayName, int userCount, int taskCount, int iconType) {
+        System.out.printf("NEW INSTANCE: displayName=%s userCount=%d taskCount=%d iconType=%d\n", displayName, userCount, taskCount, iconType);
+
         GroupElementFragment fragment = new GroupElementFragment();
         Bundle args = new Bundle();
         args.putString(ARG_DISPLAY_NAME, displayName);
         args.putInt(ARG_USER_COUNT, userCount);
         args.putInt(ARG_TASK_COUNT, taskCount);
         args.putInt(ARG_ICON_TYPE, iconType);
+
         fragment.setArguments(args);
+
+        System.out.println(args.toString());
         return fragment;
     }
 
@@ -64,10 +69,15 @@ public class GroupElementFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             displayName = getArguments().getString(ARG_DISPLAY_NAME);
+
             userCount = getArguments().getInt(ARG_USER_COUNT);
             taskCount = getArguments().getInt(ARG_TASK_COUNT);
             iconType = getArguments().getInt(ARG_ICON_TYPE);
+
+            System.out.printf("RETREIVED ARGUMENTS: displayName=%s userCount=%d taskCount=%d iconType=%d\n", displayName, userCount, taskCount, iconType);
         }
+
+        System.out.println(taskCount);
     }
 
     @Override
